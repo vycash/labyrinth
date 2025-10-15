@@ -12,7 +12,6 @@
     #include "structures.h"
 
     #include "labyrinthe.h"
-    #include "matrix.h"
     #include "file_handling.h"
     #include "game_handler.h"
 

@@ -40,42 +40,41 @@
 - [ ] Modifier la structure du labyrinthe pour gérer l’état de la clé et des objets si besoin.
 
 - [ ] Créer une fonction pour placer aléatoirement :
-    - [ ] Une clé (une seule, à ne pas placer sur le joueur, sortie ou mur)
+    - [X] Une clé (une seule, à ne pas placer sur le joueur, sortie ou mur)
     - [ ] Plusieurs trésors (quantité paramétrable, à ne pas placer sur joueur, clé, sortie, mur)
     - [ ] Plusieurs pièges (quantité paramétrable, même logique)
 
-- [ ] Adapter la sauvegarde du labyrinthe pour inclure tous les objets.
+- [X] Adapter la sauvegarde du labyrinthe pour inclure tous les objets.
 
-- [ ] Adapter le chargement pour relire les objets.
+- [X] Adapter le chargement pour relire les objets.
 
 ## 2. **Gestion de la porte/verrouillage de la sortie**
 
-- [ ] Modifier la logique de la sortie pour qu’elle soit “verrouillée” au début.
+- [X] Permettre la sortie uniquement si le joueur possède la clé.
 
-- [ ] Permettre la sortie uniquement si le joueur possède la clé.
-
-- [ ] Ajouter un attribut “a_clé” sur le joueur (booléen).
+- [X] Ajouter un attribut “a_clé” sur le joueur (booléen).
 
 ## 3. **Gestion des scores**
 
-- [ ] Ajouter une variable “score” dans la structure de jeu.
+- [X] Ajouter une variable “score” dans la structure de jeu.
 
-- [ ] Incrémenter/décrémenter le score selon :
-    - [ ] Bonus ramassé (+X)
-    - [ ] Malus ramassé (−Y)
-    - [ ] Nombre de déplacements (score diminue à chaque déplacement, ou base fixe puis malus par déplacement, selon règle choisie)
+- [X] Incrémenter/décrémenter le score selon :
+    - [X] Bonus ramassé (-X)
+    - [X] Malus ramassé (+Y)
+    - [X] Nombre de déplacements (score incrémente à chaque déplacement)
+    - **le but c'est de faire le moins de mouvements possibles**
 
-- [ ] Afficher le score après chaque déplacement.
+- [X] Afficher le score après chaque déplacement.
 
-- [ ] Afficher le score final à la fin de la partie.
+- [X] Afficher le score final à la fin de la partie.
 
 ## 4. **Interaction avec les objets**
 
-- [ ] Lorsque le joueur atteint la case clé, la ramasser (mettre “a_clé” à vrai, enlever la clé du labyrinthe)
+- [X] Lorsque le joueur atteint la case clé, la ramasser (mettre “a_clé” à vrai, enlever la clé du labyrinthe)
 
-- [ ] Lorsqu’il atteint un trésor, ajouter les points et retirer le trésor du labyrinthe.
+- [X] Lorsqu’il atteint un trésor, ajouter les points et retirer le trésor du labyrinthe.
 
-- [ ] Lorsqu’il atteint un piège, retirer les points et retirer le piège du labyrinthe.
+- [X] Lorsqu’il atteint un piège, retirer les points et retirer le piège du labyrinthe.
 
 ## 5. **Gestion des meilleurs scores (Top 10)**
 

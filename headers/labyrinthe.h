@@ -14,7 +14,7 @@
  */
 labyrinthe creer_labyrinthe(int lines,int colonnes, char* nom);
 
-void place_key(labyrinthe lab);
+void place_something(labyrinthe lab,int value,int number);
 
 /**
  * @brief initialise la grille

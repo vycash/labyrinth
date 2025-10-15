@@ -22,32 +22,35 @@ labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom){
     init_maze(res,lignes,colonnes);
     
     labyrinthe lab = {lignes,colonnes,res};
-    place_key(lab);
+
+    place_something(lab,KEY,1); // placer la clé
+    place_something(lab,PIEGE,NB_DE_PIEGES); // placer les pièges
+    place_something(lab,TRESOR,NB_DE_TRESOR); // placer les trésors
+
     enregister_labyrinthe(lab,nom);
-    //return res;
+    
     return lab;
 }
 
-void place_key(labyrinthe lab){
 
-    int lines=lab.lignes;
+void place_something(labyrinthe lab,int value,int number){
+
+    int lignes=lab.lignes;
     int colonnes=lab.colonnes;
 
-    int done=0;
+    int count=0;
     srand(time(NULL));
 
-    while( done == FAILURE ){
-        int x = rand() % lines;
+    while( count < number ){
+        int x = rand() % lignes;
         int y = rand() % colonnes;
-        if( x<1 || x>lab.lignes || y<1 || y>lab.colonnes || lab.grille[x][y] == MUR){
-            done=FAILURE;
-        }
-        else{
-            lab.grille[x][y]=KEY;
-            done=SUCCESS;
+        if( x >= 1 && x <= lignes-1 && y >= 1 && y <= colonnes-1 && lab.grille[x][y] > 0){
+            lab.grille[x][y]=value;
+            count++;
         }
     }
 }
+
 /**
  * @brief initialise la grille
  * @return une grille initialisée avec des murs et des cellules non connectées
@@ -84,13 +87,19 @@ void display_vector_as_char(int * vector, int dimension){
                 printf("[#]");
                 break;
             case JOUEUR_ID:
-                printf("%s o %s",ANSI_COLOR_RED,ANSI_RESET_ALL);
+                printf("%s o %s",ANSI_COLOR_BLUE,ANSI_RESET_ALL);
                 break;
             case SORTIE:
                 printf("%s---%s",ANSI_COLOR_GREEN,ANSI_RESET_ALL);
                 break;
             case KEY:
                 printf("%s k %s",ANSI_COLOR_GOLD,ANSI_RESET_ALL);
+                break;
+            case TRESOR:
+                printf("%s + %s",ANSI_COLOR_GREEN,ANSI_RESET_ALL);
+                break;
+            case PIEGE:
+                printf("%s * %s",ANSI_COLOR_RED,ANSI_RESET_ALL);
                 break;
             default:
                 printf("   ");
