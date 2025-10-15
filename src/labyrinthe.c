@@ -21,13 +21,13 @@ labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom){
     int** res = init_grille(lignes,colonnes);
     init_maze(res,lignes,colonnes);
     
-    labyrinthe lab = {lignes,colonnes,res};
+    labyrinthe lab = {lignes,colonnes,res,nom};
 
     place_something(lab,KEY,1); // placer la clé
     place_something(lab,PIEGE,NB_DE_PIEGES); // placer les pièges
     place_something(lab,TRESOR,NB_DE_TRESOR); // placer les trésors
 
-    enregister_labyrinthe(lab,nom);
+    enregister_labyrinthe(lab);
     
     return lab;
 }

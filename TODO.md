@@ -37,12 +37,10 @@
     - [X] Valeurs pour la clé (`CLE`), trésor (`TRESOR`), piège (`PIEGE`), etc.
     - [X] Définir les valeurs de bonus (`X`) et de malus (`Y`).
 
-- [ ] Modifier la structure du labyrinthe pour gérer l’état de la clé et des objets si besoin.
-
-- [ ] Créer une fonction pour placer aléatoirement :
+- [X] Créer une fonction pour placer aléatoirement :
     - [X] Une clé (une seule, à ne pas placer sur le joueur, sortie ou mur)
-    - [ ] Plusieurs trésors (quantité paramétrable, à ne pas placer sur joueur, clé, sortie, mur)
-    - [ ] Plusieurs pièges (quantité paramétrable, même logique)
+    - [X] Plusieurs trésors (quantité paramétrable, à ne pas placer sur joueur, clé, sortie, mur)
+    - [X] Plusieurs pièges (quantité paramétrable, même logique)
 
 - [X] Adapter la sauvegarde du labyrinthe pour inclure tous les objets.
 

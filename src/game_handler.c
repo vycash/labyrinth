@@ -13,6 +13,7 @@
 
 #include "labyrinthe.h"
 #include "game_handler.h"
+#include "file_handling.h"
 
 void jouer(labyrinthe labyrinth){
     joueur j = JOUEUR;
@@ -55,6 +56,10 @@ void jouer(labyrinthe labyrinth){
         if ( verifier_victoire(labyrinth) ){
             printf("\n%sFélicitations, vous avez gagné !!! %s\n",ANSI_COLOR_GREEN,ANSI_RESET_ALL);
             printf("%sVotre score : %d%s\n",ANSI_COLOR_BLUE,j.score,ANSI_RESET_ALL);
+
+            if(score_parmi_meilleurs(j.score,labyrinth.nom)){
+                printf("!! BRAVO vous êtes parmi les %d meilleurs !! ",NB_DE_RESULTATS);
+            }
             running=0;
         }
     }
@@ -62,6 +67,15 @@ void jouer(labyrinthe labyrinth){
 
 int verifier_victoire(labyrinthe labyrinth){
     return labyrinth.grille[labyrinth.lignes-1][labyrinth.colonnes-2]==JOUEUR_ID;
+}
+
+int score_parmi_meilleurs(int score,char* nom_labyrinthe){
+    int* scores = get_best_scores(nom_labyrinthe,NB_DE_RESULTATS);
+    int max=scores[0];
+    for(int i=0 ; i<NB_DE_RESULTATS ; i++){
+        if(scores[i]>max){ max=scores[i]; }
+    }
+    return score <= max;
 }
 
 int placer(labyrinthe lab,int sujet_id,int x,int y){

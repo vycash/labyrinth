@@ -17,29 +17,19 @@
 #include "matrix.h"
 #include "labyrinthe.h"
 
-
-FILE *open_file(char* file_name,char *mode) {
-    FILE *file = fopen(file_name, mode);
-    if (file == NULL) {
-        printf("Error: impossible d'ouvrir le fichier <%s>\n", file_name);
-        return NULL;
-    }
-    return file;
-}
-
-char* format_name(char* nom){
+char* format_name(char* nom,char* dir_name,char* extension){
     char* filename = malloc(BUFFER_SIZE*sizeof(char));
-    snprintf(filename, BUFFER_SIZE, "%s/%s.%s", DOSSIER,nom,EXTENSION);
+    snprintf(filename, BUFFER_SIZE, "%s/%s.%s", dir_name,nom,extension);
     return filename;
 }
 
-void enregister_labyrinthe(labyrinthe lab,char* nom){
+void enregister_labyrinthe(labyrinthe lab){
     
     int** matrix = lab.grille;
     int lignes = lab.lignes;
     int colonnes = lab.colonnes;
 
-    char* filename= format_name(nom);
+    char* filename= format_name(lab.nom,DOSSIER_MAPS,MAP_EXTENSION);
     FILE* file = fopen(filename, "w"); 
     
     if (file != NULL) { 
@@ -61,9 +51,9 @@ void enregister_labyrinthe(labyrinthe lab,char* nom){
 
 labyrinthe charger_labyrinthe(char* nom){
 
-    char* filename= format_name(nom);
+    char* filename= format_name(nom,DOSSIER_MAPS,MAP_EXTENSION);
     FILE* file = fopen(filename, "r"); 
-    if (!file) { free(filename); return (labyrinthe){0,0,NULL}; }
+    if (!file) { free(filename); return (labyrinthe){0,0,NULL,NULL}; }
 
     int lignes,colonnes;
     fscanf(file,"%d",&lignes);
@@ -80,14 +70,14 @@ labyrinthe charger_labyrinthe(char* nom){
     free(filename);
     fclose(file);
     //return grille;
-    return (labyrinthe) { lignes,colonnes,grille };
+    return (labyrinthe) { lignes,colonnes,grille,nom };
 }
 
 void afficher_labyrinthes_disponibles() {
     DIR *dir;
     struct dirent *ent;
 
-    dir = opendir(DOSSIER);
+    dir = opendir(DOSSIER_MAPS);
     if (dir == NULL) {
         printf("Erreur : impossible d'ouvrir le dossier des labyrinthes.\n");
         return;
@@ -98,9 +88,9 @@ void afficher_labyrinthes_disponibles() {
     while ((ent = readdir(dir)) != NULL) {
         // Vérifie l'extension
         size_t len = strlen(ent->d_name);
-        size_t ext_len = strlen(EXTENSION);
+        size_t ext_len = strlen(MAP_EXTENSION);
         if (len > ext_len + 1) { // Ex : "abc.cfg" >= 5
-            if (strcmp(ent->d_name + len - ext_len, EXTENSION) == 0 && ent->d_name[len - ext_len - 1] == '.') {
+            if (strcmp(ent->d_name + len - ext_len, MAP_EXTENSION) == 0 && ent->d_name[len - ext_len - 1] == '.') {
                 // Affiche le nom sans le .cfg
                 char lab_name[256];
                 strncpy(lab_name, ent->d_name, len - ext_len - 1);
@@ -114,3 +104,41 @@ void afficher_labyrinthes_disponibles() {
     closedir(dir);
 }
 
+
+void enregistrer_score(char* nom_labyrinthe,char* nom_joueur,int score){
+    char* filename= format_name(nom_labyrinthe,DOSSIER_SCORE,SCORE_EXTENSION);
+    FILE* file = fopen(filename, "a"); 
+    if (file != NULL) { 
+        fprintf(file,"%s,%d\n",nom_joueur,score);
+    }        
+    free(filename);
+    fclose(file);
+}
+
+int* get_best_scores(char* nom_labyrinthe, int nb_de_resultats) {
+    int* res = allocate_vector(nb_de_resultats, 0);
+    char* filename = format_name(nom_labyrinthe, DOSSIER_SCORE, SCORE_EXTENSION);
+    if (!filename) {
+        printf("Filename generation failed!\n");
+        return res;
+    }
+    FILE* file = fopen(filename, "r");
+    if (!file) {
+        printf("Could not open file: %s\n", filename);
+        return res;
+    }
+    for (int i = 0; i < nb_de_resultats && !feof(file); i++) {
+        if (fscanf(file, "%*[^,],%d", &res[i]) != 1) {
+            printf("Failed to read score at index %d\n", i);
+            break;
+        }
+    }
+
+    fclose(file);
+    return res;
+}
+
+int file_exists(char* nom){
+    FILE* file = fopen(filename, "r");
+    return res != NULL
+}

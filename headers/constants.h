@@ -43,8 +43,13 @@
 
 /*===================Constantes du file_handling=========================*/
 
-#define EXTENSION "cfg"
-#define DOSSIER "ressources"
+#define MAP_EXTENSION "cfg"
+#define SCORE_EXTENSION "score"
+
+#define NB_DE_RESULTATS 10
+
+#define DOSSIER_MAPS "ressources/maps"
+#define DOSSIER_SCORE "ressources/scores"
 #define BUFFER_SIZE 256
 
 #define SUCCESS 1

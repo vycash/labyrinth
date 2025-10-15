@@ -6,19 +6,11 @@
 */
 
 /**
- * @brief ouvre un fichier selon le mode donné en parametres (lecture/ecriture)
- * @param file_name le nom du fichier à ouvrir
- * @param mode le mode d'ouverture du fichier (lecture/ecriture)
- * @return un pointeur su fichier
- */
-FILE *open_file(char* file_name,char *mode);
-
-/**
  * @brief formate le nom du labyrinthe en un chemin relatif cers le fichier contenant le labyrinthe
  * @param nom le nom du labyrinthe
  * @return le chemin du fichier contenant le labyrinthe
 */
-char* format_name(char* nom);
+char* format_name(char* nom,char* dir_name,char* extension);
 
 
 /**
@@ -30,8 +22,11 @@ char* format_name(char* nom);
  * @param colonnes le nb de colonnes du labyrinthe
  * @param nom le nom du labyrinthe à enregistrer
  */
-void enregister_labyrinthe(labyrinthe lab,char* nom);
+void enregister_labyrinthe(labyrinthe lab);
 
+void enregistrer_score(char* nom_labyrinthe,char* nom_joueur,int score);
+
+int* get_best_scores(char* nom_labyrinthe,int nb_de_resultats);
 
 /**
  * @brief charge un labyrinthe de son nom

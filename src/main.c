@@ -52,7 +52,7 @@
     }
 
     int main() {
-        labyrinthe labyrinth={0,0,NULL};
+        labyrinthe labyrinth={0,0,NULL,NULL};
         int lignes=0;
         int colonnes=0;
         char* nom;

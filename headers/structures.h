@@ -15,6 +15,7 @@ typedef struct{
     int lignes;
     int colonnes;
     int** grille;
+    char* nom;
 } labyrinthe;
 
 
