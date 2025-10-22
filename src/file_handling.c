@@ -5,17 +5,7 @@
  * @brief fichier qui implémente les fcts qui gèrent l'ecriture et la lecture des fichiers contenant les labyrinthes.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <dirent.h>
-
-#include "constants.h"
-#include "structures.h"
-
-#include "file_handling.h"
-#include "matrix.h"
-#include "labyrinthe.h"
+#include "includes.h"
 
 char* format_name(char* nom,char* dir_name,char* extension){
     char* filename = malloc(BUFFER_SIZE*sizeof(char));
@@ -30,7 +20,10 @@ void enregister_labyrinthe(labyrinthe lab){
     int colonnes = lab.colonnes;
 
     char* filename= format_name(lab.nom,DOSSIER_MAPS,MAP_EXTENSION);
-    FILE* file = fopen(filename, "w"); 
+    FILE* file = fopen(filename, "w");
+
+    char* filename_score= format_name(lab.nom,DOSSIER_SCORE,SCORE_EXTENSION);
+    FILE* file_score = fopen(filename_score, "w"); 
     
     if (file != NULL) { 
 
@@ -73,14 +66,14 @@ labyrinthe charger_labyrinthe(char* nom){
     return (labyrinthe) { lignes,colonnes,grille,nom };
 }
 
-void afficher_labyrinthes_disponibles() {
+int afficher_labyrinthes_disponibles() {
     DIR *dir;
     struct dirent *ent;
 
     dir = opendir(DOSSIER_MAPS);
     if (dir == NULL) {
         printf("Erreur : impossible d'ouvrir le dossier des labyrinthes.\n");
-        return;
+        return 0;
     }
 
     printf("Labyrinthes disponibles :\n");
@@ -100,8 +93,9 @@ void afficher_labyrinthes_disponibles() {
             }
         }
     }
-    if (count == 0) printf("(Aucun labyrinthe trouvé)\n");
+    if (count == 0) printf("%s(Aucun labyrinthe trouvé)%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
     closedir(dir);
+    return count;
 }
 
 
@@ -116,17 +110,22 @@ void enregistrer_score(char* nom_labyrinthe,char* nom_joueur,int score){
 }
 
 int* get_best_scores(char* nom_labyrinthe, int nb_de_resultats) {
+
     int* res = allocate_vector(nb_de_resultats, 0);
     char* filename = format_name(nom_labyrinthe, DOSSIER_SCORE, SCORE_EXTENSION);
+
     if (!filename) {
         printf("Filename generation failed!\n");
         return res;
     }
-    FILE* file = fopen(filename, "r");
+
+    FILE* file = fopen(filename, "r+");
     if (!file) {
         printf("Could not open file: %s\n", filename);
         return res;
     }
+    int c = fgetc(file);
+    if (c == EOF){ return NULL; } // file is empty
     for (int i = 0; i < nb_de_resultats && !feof(file); i++) {
         if (fscanf(file, "%*[^,],%d", &res[i]) != 1) {
             printf("Failed to read score at index %d\n", i);
@@ -136,9 +135,4 @@ int* get_best_scores(char* nom_labyrinthe, int nb_de_resultats) {
 
     fclose(file);
     return res;
-}
-
-int file_exists(char* nom){
-    FILE* file = fopen(filename, "r");
-    return res != NULL
 }

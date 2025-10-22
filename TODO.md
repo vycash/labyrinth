@@ -76,16 +76,13 @@
 
 ## 5. **Gestion des meilleurs scores (Top 10)**
 
-- [ ] Créer un fichier `nom_labyrinthe.score` pour chaque labyrinthe.
+- [X] Créer un fichier `nom_labyrinthe.score` pour chaque labyrinthe.
 
-- [ ] À la fin de la partie, lire le top 10 depuis ce fichier.
+- [X] À la fin de la partie, lire le top 10 depuis ce fichier.
 
-- [ ] Si le score du joueur est dans le top 10 :
-    - [ ] Demander le nom du joueur.
-    - [ ] Insérer le score et le nom à la bonne position.
-    - [ ] Réécrire le fichier de scores avec les 10 meilleurs.
-
-- [ ] Créer une structure pour stocker un score (nom, score).
+- [X] Si le score du joueur est dans le top 10 :
+    - [X] Demander le nom du joueur.
+    - [X] Insérer le score et le nom à la bonne position.
 
 ## 6. **Affichage des meilleurs scores**
 

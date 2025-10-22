@@ -58,7 +58,11 @@ void jouer(labyrinthe labyrinth){
             printf("%sVotre score : %d%s\n",ANSI_COLOR_BLUE,j.score,ANSI_RESET_ALL);
 
             if(score_parmi_meilleurs(j.score,labyrinth.nom)){
-                printf("!! BRAVO vous êtes parmi les %d meilleurs !! ",NB_DE_RESULTATS);
+                printf("\n!! BRAVO vous êtes parmi les %d meilleurs !! \n",NB_DE_RESULTATS);
+                printf(" veullez rentrer votre pseudo : ");
+                char name[BUFFER_SIZE];
+                scanf("%s",name);
+                enregistrer_score(labyrinth.nom,name,j.score);
             }
             running=0;
         }
@@ -71,6 +75,7 @@ int verifier_victoire(labyrinthe labyrinth){
 
 int score_parmi_meilleurs(int score,char* nom_labyrinthe){
     int* scores = get_best_scores(nom_labyrinthe,NB_DE_RESULTATS);
+    if( scores == NULL ) return 1;
     int max=scores[0];
     for(int i=0 ; i<NB_DE_RESULTATS ; i++){
         if(scores[i]>max){ max=scores[i]; }

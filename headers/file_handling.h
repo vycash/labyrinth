@@ -45,4 +45,4 @@ labyrinthe charger_labyrinthe(char* nom);
 int* taille_labyrinthe(char* nom);
 
 
-void afficher_labyrinthes_disponibles();
+int afficher_labyrinthes_disponibles();

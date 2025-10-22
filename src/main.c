@@ -18,7 +18,7 @@
 
     int menu(){
 
-        printf("Mini-projet : Jeu de labyrinthe\n");
+        printf("======= Menu Jeu de labyrinthe =======\n");
         printf("\n-> Veuillez faire un choix : \n");
         printf("    - 1) Créer un labyrinthe   \n");
         printf("    - 2) Charger un labyrinthe \n");
@@ -90,18 +90,15 @@
                     break;
 
                 case 2: // Charger un labyrinthe
-                    afficher_labyrinthes_disponibles();
-                    nom=recuperer_nom_labyrinthe();
-                    
-                    labyrinth = charger_labyrinthe(nom);
+                    if ( afficher_labyrinthes_disponibles() > 0){
+                        nom=recuperer_nom_labyrinthe();   
+                        labyrinth = charger_labyrinthe(nom);
+                    }
                     // si le labyrinth est bien chargé
                     if( labyrinth.grille != NULL){
                         lignes=labyrinth.lignes;
                         colonnes=labyrinth.colonnes;
                         printf("%s le labyrinthe %s est bien chargé!!%s\n",ANSI_COLOR_GREEN,nom,ANSI_RESET_ALL);
-                    }
-                    else{
-                        printf("%sERROR : impossible de charger le labyrinth%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
                     }
                     break;
 
