@@ -14,6 +14,7 @@
  */
 labyrinthe creer_labyrinthe(int lines,int colonnes, char* nom);
 
+
 void place_something(labyrinthe lab,int value,int number);
 
 /**

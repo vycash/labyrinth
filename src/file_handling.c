@@ -115,24 +115,49 @@ int* get_best_scores(char* nom_labyrinthe, int nb_de_resultats) {
     char* filename = format_name(nom_labyrinthe, DOSSIER_SCORE, SCORE_EXTENSION);
 
     if (!filename) {
-        printf("Filename generation failed!\n");
+        printf("Erreur lors de la generation du nom du fichier!\n");
         return res;
     }
 
     FILE* file = fopen(filename, "r+");
     if (!file) {
-        printf("Could not open file: %s\n", filename);
+        printf("Impossible d'ouvrir le fichier: %s\n", filename);
         return res;
     }
     int c = fgetc(file);
-    if (c == EOF){ return NULL; } // file is empty
+    if (c == EOF){ // file is empty
+        printf("Fichier %s vide",filename);
+        free(filename);
+        fclose(file);
+        return NULL;
+    } 
     for (int i = 0; i < nb_de_resultats && !feof(file); i++) {
         if (fscanf(file, "%*[^,],%d", &res[i]) != 1) {
-            printf("Failed to read score at index %d\n", i);
+            printf("impossible de lire le fichier à l'index %d\n", i);
             break;
         }
     }
 
     fclose(file);
     return res;
+}
+
+void afficher_meilleurs_scores(char* nom_labyrinthe){
+    char* filename = format_name(nom_labyrinthe, DOSSIER_SCORE, SCORE_EXTENSION);
+    if (!filename) {
+        printf("Erreur lors de la generation du nom du fichier!\n");
+    }
+    FILE* file = fopen(filename, "r+");
+    if (!file) {
+        printf("Impossible d'ouvrir le fichier: %s\n", filename);
+        return ;
+    }
+    printf("\n=> les meilleurs joueurs du labyrinthe <%s> :\n",nom_labyrinthe);
+    char line[BUFFER_SIZE];
+    for (int i = 0; i < NB_DE_RESULTATS && !feof(file); i++) {
+        if (fgets(line, sizeof(line), file) == NULL){ break;}
+        printf("    -> %s", line); 
+    }
+    printf("\n");
+    fclose(file);
 }

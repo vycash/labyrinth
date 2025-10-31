@@ -1,11 +1,6 @@
-#include "constants.h"
-#include "structures.h"
-
+#include "includes"
 #include "minunit.h"
-#include "file_handling.h"
-#include "labyrinthe.h"
-#include "matrix.h"
-#include "game_handler.h"
+
 
 static int lignes = 3;
 static int colonnes = 3;

@@ -86,18 +86,18 @@
 
 ## 6. **Affichage des meilleurs scores**
 
-- [ ] Ajouter une nouvelle entrée dans le menu principal ("Afficher le classement des meilleurs scores").
-
-- [ ] Afficher le top 10 pour le labyrinthe actuellement chargé.
+- [X] Ajouter une nouvelle entrée dans le menu principal ("Afficher le classement des meilleurs scores").
+- [X] Afficher le top 10 pour le labyrinthe actuellement chargé.
+- [X] Afficher le top 10 pour un labyrinthe donné.
 
 ## 7. **Interface utilisateur et robustesse**
 
-- [ ] Adapter le menu principal pour intégrer la nouvelle option.
+- [X] Adapter le menu principal pour intégrer la nouvelle option.
 - [ ] Vérifier et gérer tous les cas particuliers (pas de clé, pas de score, fichier inexistant, etc.).
 - [ ] Tester la sauvegarde et le rechargement des labyrinthes avec objets.
 
 ## 8. **Tests et validation**
-
+- [ ] Vérifier la libération de tous les blocs de mémoire alloués lors le fonctionnement du programme
 - [ ] Vérifier que tous les objets sont placés correctement.
 - [ ] Vérifier que le verrouillage/déverrouillage de la sortie fonctionne.
 - [ ] Vérifier la gestion du score dans tous les cas.

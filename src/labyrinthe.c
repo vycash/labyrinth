@@ -5,16 +5,7 @@
 * @brief Implementation des fonctions de gestion du labyrinthe
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-#include "constants.h"
-#include "structures.h"
-
-#include "labyrinthe.h"
-#include "matrix.h"
-#include "file_handling.h"
+#include "includes.h"
 
 
 labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom){

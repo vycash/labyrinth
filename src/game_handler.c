@@ -5,15 +5,7 @@
 * @brief Implementation des fonctions de gestion du labyrinthe
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "constants.h"
-#include "structures.h"
-
-#include "labyrinthe.h"
-#include "game_handler.h"
-#include "file_handling.h"
+#include "includes.h"
 
 void jouer(labyrinthe labyrinth){
     joueur j = JOUEUR;
