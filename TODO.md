@@ -93,13 +93,13 @@
 ## 7. **Interface utilisateur et robustesse**
 
 - [X] Adapter le menu principal pour intégrer la nouvelle option.
-- [ ] Vérifier et gérer tous les cas particuliers (pas de clé, pas de score, fichier inexistant, etc.).
-- [ ] Tester la sauvegarde et le rechargement des labyrinthes avec objets.
+- [X] Vérifier et gérer tous les cas particuliers (pas de clé, pas de score, fichier inexistant, etc.).
+- [X] Tester la sauvegarde et le rechargement des labyrinthes avec objets.
 
 ## 8. **Tests et validation**
-- [ ] Vérifier la libération de tous les blocs de mémoire alloués lors le fonctionnement du programme
-- [ ] Vérifier que tous les objets sont placés correctement.
-- [ ] Vérifier que le verrouillage/déverrouillage de la sortie fonctionne.
+- [X] Vérifier la libération de tous les blocs de mémoire alloués lors le fonctionnement du programme
+- [X] Vérifier que tous les objets sont placés correctement.
+- [X] Vérifier que le verrouillage/déverrouillage de la sortie fonctionne.
 - [ ] Vérifier la gestion du score dans tous les cas.
 - [ ] Vérifier la gestion du classement/top 10.
 - [ ] Vérifier la robustesse (valeurs invalides, fichiers manquants…).

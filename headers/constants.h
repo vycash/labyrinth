@@ -10,6 +10,9 @@
 
 /*===================Constantes du labyrinthe===========================*/
 
+/**
+ *@brief les valeurs des identifiants des differents objet sur le labyrinthe
+*/
 #define JOUEUR_ID 0 
 
 #define MUR -1
@@ -26,6 +29,7 @@
 #define NB_DE_PIEGES 10
 #define NB_DE_TRESOR 10
 
+/** @brief l'objet joueur par défaut */
 #define JOUEUR (joueur){JOUEUR_ID,0,0,0,1}
 
 /*===================Constantes du game_handler=========================*/
@@ -43,12 +47,19 @@
 
 /*===================Constantes du file_handling=========================*/
 
+/** @brief l'extension des fichiers de labyrinthes <.cfg> */
 #define MAP_EXTENSION "cfg"
+
+/** @brief l'extension des fichiers de scores <.score> */
 #define SCORE_EXTENSION "score"
 
+/** @brief le nombre de scores à récupérer par défaut */
 #define NB_DE_RESULTATS 10
 
-#define DOSSIER_MAPS "ressources/maps"
+/** @brief le chemin vers le dossier où sont stockés les labyrinthe */
+#define DOSSIER_MAPS "ressources/maps" 
+
+/** @brief le chemin vers le dossier où sont stockés les scores */
 #define DOSSIER_SCORE "ressources/scores"
 #define BUFFER_SIZE 256
 

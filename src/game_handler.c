@@ -66,7 +66,7 @@ int verifier_victoire(labyrinthe labyrinth){
 }
 
 int score_parmi_meilleurs(int score,char* nom_labyrinthe){
-    int* scores = get_best_scores(nom_labyrinthe,NB_DE_RESULTATS);
+    int* scores = get_best_scores(nom_labyrinthe);
     if( scores == NULL ) return 1;
     int max=scores[0];
     for(int i=0 ; i<NB_DE_RESULTATS ; i++){

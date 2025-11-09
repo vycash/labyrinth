@@ -22,9 +22,13 @@ void enregister_labyrinthe(labyrinthe lab){
     char* filename= format_name(lab.nom,DOSSIER_MAPS,MAP_EXTENSION);
     FILE* file = fopen(filename, "w");
 
+    // création du fichier qui contiendra les scores des joueurs sur ce labyrinthe
     char* filename_score= format_name(lab.nom,DOSSIER_SCORE,SCORE_EXTENSION);
     FILE* file_score = fopen(filename_score, "w"); 
-    
+    fclose(file_score);
+    free(filename_score);
+    // fin 
+
     if (file != NULL) { 
 
         fprintf(file,"%d\n",lignes);
@@ -109,9 +113,11 @@ void enregistrer_score(char* nom_labyrinthe,char* nom_joueur,int score){
     fclose(file);
 }
 
-int* get_best_scores(char* nom_labyrinthe, int nb_de_resultats) {
+//! à corriger : renvoie une liste de scores, pas forcément les meilleurs !!
+//! trier tous les scores et récuperer un nb spécifique d'eux
+int* get_best_scores(char* nom_labyrinthe) {
 
-    int* res = allocate_vector(nb_de_resultats, 0);
+    int* res = allocate_vector(NB_DE_RESULTATS, 0);
     char* filename = format_name(nom_labyrinthe, DOSSIER_SCORE, SCORE_EXTENSION);
 
     if (!filename) {
@@ -131,7 +137,7 @@ int* get_best_scores(char* nom_labyrinthe, int nb_de_resultats) {
         fclose(file);
         return NULL;
     } 
-    for (int i = 0; i < nb_de_resultats && !feof(file); i++) {
+    for (int i = 0; i < NB_DE_RESULTATS && !feof(file); i++) {
         if (fscanf(file, "%*[^,],%d", &res[i]) != 1) {
             printf("impossible de lire le fichier à l'index %d\n", i);
             break;

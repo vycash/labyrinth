@@ -14,7 +14,11 @@
  */
 labyrinthe creer_labyrinthe(int lines,int colonnes, char* nom);
 
-
+/**
+ * @brief place dans le labyrinthe un nombre d'occurences d'un objet dans des cases aléatoires
+ * @param value l'identifiant de l'objet à placer dans le labyrinthe
+ * @param number le nombre d'occurences de l'objet que l'on veut placer
+*/
 void place_something(labyrinthe lab,int value,int number);
 
 /**

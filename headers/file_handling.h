@@ -2,21 +2,23 @@
  * @file file_handling.h
  * @author QACH Yahya
  * @date 5 Octobre 2025
- * @brief fichier qui déclare les prototypes des fcts qui gèrent l'ecriture et la lecture des fichiers contenant les labyrinthes.
+ * @brief fichier qui déclare les prototypes des fcts qui gèrent l'ecriture et la lecture des fichiers de l'ensemble du projet.
 */
 
 /**
  * @brief formate le nom du labyrinthe en un chemin relatif cers le fichier contenant le labyrinthe
+ * @see constants.h
  * @param nom le nom du labyrinthe
  * @return le chemin du fichier contenant le labyrinthe
 */
 char* format_name(char* nom,char* dir_name,char* extension);
 
-
 /**
  * @brief enregistre un labyrinthe en format texte dans un fichier
- * le fichier est nommé <nom_labyrinthe.cfg> si il n'existe pas il est créé puis modifié
- * les deux premières lignes indiquent respectivement le nb de lignes et le nb de colonnes
+ * le fichier est nommé <nom_labyrinthe.cfg> l'extension du ficher d'enregistrement est définie 
+ * dans constants.h sous le nom MAP_EXTENSION, si le fichier n'existe pas il est créé puis modifié.
+ * @see constants.h pour les constantes utilisées dans file_handling.h
+ * @see MAP_EXTENSION pour l'extension de fichier qui stocke le labyrinthe
  * @param matrix le labyrinthe à enregistrer
  * @param lignes le nb de lignes du labyrinthe
  * @param colonnes le nb de colonnes du labyrinthe
@@ -28,7 +30,7 @@ void enregister_labyrinthe(labyrinthe lab);
  * @brief charge un labyrinthe de son nom
  * la fct cherche le fichier correspondant du labyrinthe et lit son contenu pour reconstruire le labyrinthe et le renvoie
  * @param nom le nom du labyrinthe que l'ont veut charger
- * @return la labyrinthe chargé en mémoire sous forme de matrice
+ * @return le labyrinthe chargé en mémoire sous forme de matrice
 */
 labyrinthe charger_labyrinthe(char* nom);
 
@@ -40,8 +42,33 @@ labyrinthe charger_labyrinthe(char* nom);
 */
 int* taille_labyrinthe(char* nom);
 
-
+/**
+* @brief affiche la liste des labyrinthes enregistrés dans le dossier où sont stockés les labyrinthes
+         défini dans constants.h sous le nom de DOSSIER_MAPS
+* @see constants.h
+* @return le nombre de labyrinthes trouvés et affichés
+*/
 int afficher_labyrinthes_disponibles();
+
+/**
+ * @brief enregistre le score du joueur dans un fichier
+ * @param nom_labyrinthe le nom du labyrinthe sur lequel le joueur a joué et a eu un score dessus
+ * @param nom_joueur le nom du joueur 
+ * @param score le score qu'a obtenu le joueur sur le labyrinthe
+*/
 void enregistrer_score(char* nom_labyrinthe,char* nom_joueur,int score);
-int* get_best_scores(char* nom_labyrinthe,int nb_de_resultats);
+
+/**
+ * @brief renvoie un nombre spécifique des meilleurs scores des joueurs qui ont joués sur ce labyrinthe
+ * @see constants.h, NB_DE_RESULTATS est la macro utilisée par défaut comme nombre de resultats
+ * @param nom_labyrinthe le nom du labyrinthe duquel on souhaite récupérer les meilleurs résultats
+ * @return un tableau de taille nb_de_resultats correspondants aux meilleurs scores
+*/
+int* get_best_scores(char* nom_labyrinthe);
+
+/**
+ * @brief affiche les meilleurs scores d'un labyrinthe donné
+ * @param nom_labyrinthe nom du labyrinthe duquel on souhaite voir les meilleurs résultats
+ * @see constants.h, NB_DE_RESULTATS est la valeur utilisée par déafaut 
+*/
 void afficher_meilleurs_scores(char* nom_labyrinthe);
