@@ -1,54 +1,60 @@
 # Compiler and flags
-CC = gcc
-CFLAGS = -Wall -Wextra -pedantic
-COMPILE = $(CC) $(CFLAGS) -I$(HEADERS_DIR) -c $< -o $@ 
-RM = rm
-RM_DIR = rm -rf
-MAKE_DIR = mkdir
+CC       = gcc
+CFLAGS   = -Wall -Wextra -pedantic -I$(HEADERS_DIR)
+COMPILE  = $(CC) $(CFLAGS) -c $< -o $@
+RM       = rm
+RM_DIR   = rm -rf
+MAKE_DIR = mkdir -p
 
 # Directories
-# all directories are dfined of relative path from the location of this makefile
-SRC_DIR = src/
-OUTPUT_DIR = bin/
+SRC_DIR     = src/files/
+OUTPUT_DIR  = bin/
 HEADERS_DIR = headers/
-TEST_DIR = tests/
+TEST_DIR    = tests/
 
-# Source&Object files
-SRC_FILES = $(SRC_DIR)labyrinthe.c $(SRC_DIR)matrix.c $(SRC_DIR)file_handling.c $(SRC_DIR)game_handler.c
-OBJ_FILES = $(OUTPUT_DIR)labyrinthe.o $(OUTPUT_DIR)matrix.o $(OUTPUT_DIR)file_handling.o $(OUTPUT_DIR)game_handler.o
+# Source & Object files
+SRC_FILES   = $(wildcard $(SRC_DIR)*.c)
+OBJ_FILES   = $(SRC_FILES:$(SRC_DIR)%.c=$(OUTPUT_DIR)%.o)
 
-MAIN_SRC= $(SRC_DIR)main.c
-MAIN_OBJ= $(OUTPUT_DIR)main.o
-
-TARGET=labyrinthe_game
+MAIN_SRC    = src/main.c
+MAIN_OBJ    = $(OUTPUT_DIR)main.o
+TARGET      = labyrinthe_game
 
 # Test files
-TEST_BIN = bin/test_lab
-TEST_SRC = tests/mainTest.c
+TEST_BIN    = $(OUTPUT_DIR)test_lab
+TEST_SRC    = $(TEST_DIR)mainTest.c
 MINUNIT_DIR = minunit/
 
-.PHONY : all clean test
+.PHONY: all clean test
 
+# Default build target
 all: $(OUTPUT_DIR) $(TARGET)
 
+# Create the output directory
 $(OUTPUT_DIR):
 	$(MAKE_DIR) $@
 
+# Compile the main executable
 $(TARGET): $(MAIN_OBJ) $(OBJ_FILES)
 	$(CC) $^ -o $@
-$(MAIN_OBJ) : $(MAIN_SRC)
+
+# Compile the main object file
+$(MAIN_OBJ): $(MAIN_SRC)
 	$(COMPILE)
 
-# rule means : any .o file is compiled with its .c file
+# Rule for compiling object files
 $(OUTPUT_DIR)%.o: $(SRC_DIR)%.c
 	$(COMPILE)
 
+# Test target
 test: $(TEST_BIN)
 	./$(TEST_BIN)
 
+# Compile the test suite
 $(TEST_BIN): $(TEST_SRC) $(SRC_FILES)
 	$(CC) $^ -I$(HEADERS_DIR) -I$(MINUNIT_DIR) -o $@
 
+# Clean compiled files
 clean:
 	$(RM_DIR) $(OUTPUT_DIR)
 	$(RM) $(TARGET)

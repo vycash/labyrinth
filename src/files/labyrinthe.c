@@ -6,6 +6,8 @@
 */
 
 #include "includes.h"
+#include <time.h>
+#include "matrix.h"
 
 
 labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom){
@@ -168,4 +170,9 @@ void init_maze(int **matrix,int lignes,int colonnes) {
     free(murs);
 }
 
+
+void free_labyrinth(labyrinthe lab){
+    free_matrix(lab.grille,lab.lignes);
+    free(lab.nom);
+}
 

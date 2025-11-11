@@ -8,6 +8,7 @@
 #include "includes.h"
 
 void jouer(labyrinthe labyrinth){
+    
     joueur j = JOUEUR;
     int running=1;
     while(running){
@@ -16,7 +17,7 @@ void jouer(labyrinthe labyrinth){
             afficher_labyrinthe(labyrinth.grille, labyrinth.lignes, labyrinth.colonnes);
         }
         
-        printf("se déplacer : \n z : haut\n d : droite\n s : bas\n q : gauche\n");
+        printf("\npour vous déplacer : \n z : haut\n d : droite\n s : bas\n q : gauche\n");
         printf("%sEst ce que vous avez la clé? : %d%s\n",ANSI_COLOR_GOLD,j.a_cle,ANSI_RESET_ALL);
         printf("%sVotre score : %d%s\n",ANSI_COLOR_BLUE,j.score,ANSI_RESET_ALL);
         
@@ -27,17 +28,19 @@ void jouer(labyrinthe labyrinth){
                 char move = line[0]; // prend que le premier char de la ligne
                 switch(move){
                     case MOVEMENT_HAUT:
-                    res=deplacer_joueur_haut(&j,labyrinth);
-                    break;
+                        res=deplacer_joueur_haut(&j,labyrinth);
+                        break;
                     case MOVEMENT_BAS:
-                    res=deplacer_joueur_bas(&j,labyrinth);
-                    break;
+                        res=deplacer_joueur_bas(&j,labyrinth);
+                        break;
                     case MOVEMENT_DROITE:
-                    res=deplacer_joueur_droite(&j,labyrinth);
-                    break;
+                        res=deplacer_joueur_droite(&j,labyrinth);
+                        break;
                     case MOVEMENT_GAUCHE:
-                    res=deplacer_joueur_gauche(&j,labyrinth);
-                    break;
+                        res=deplacer_joueur_gauche(&j,labyrinth);
+                        break;
+                    default:
+                        printf("%sEntrée incorrecte%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
                 }
             }
             else {
@@ -45,13 +48,14 @@ void jouer(labyrinthe labyrinth){
             }
 
         }
+        
         if ( verifier_victoire(labyrinth) ){
             printf("\n%sFélicitations, vous avez gagné !!! %s\n",ANSI_COLOR_GREEN,ANSI_RESET_ALL);
             printf("%sVotre score : %d%s\n",ANSI_COLOR_BLUE,j.score,ANSI_RESET_ALL);
 
             if(score_parmi_meilleurs(j.score,labyrinth.nom)){
-                printf("\n!! BRAVO vous êtes parmi les %d meilleurs !! \n",NB_DE_RESULTATS);
-                printf(" veullez rentrer votre pseudo : ");
+                printf("\n%s======= !! BRAVO vous êtes parmi les %d meilleurs !! =======\n%s",ANSI_COLOR_GREEN,NB_DE_RESULTATS,ANSI_RESET_ALL);
+                printf("\nveuillez rentrer votre pseudo : ");
                 char name[BUFFER_SIZE];
                 scanf("%s",name);
                 enregistrer_score(labyrinth.nom,name,j.score);

@@ -39,7 +39,9 @@ int * allocate_vector(int dimension, int val){
 
 // libère la mémoire allouée pour un vecteur
 void free_vector(int * vector){
-    free(vector);
+    if( vector != NULL ){
+        free(vector);
+    }
 }
 
 // alloue la mémoire pour une matrice de taille columns * lines
@@ -63,10 +65,12 @@ int ** generate_identity_matrix(int dimension){
 
 // libère la mémoire allouée pour la matrice
 void free_matrix(int ** matrix, int n){
-    for( int i=0 ; i<n ; i++ ){
-        free_vector(matrix[i]);
+    if( matrix != NULL ){
+        for( int i=0 ; i<n ; i++ ){
+            free_vector(matrix[i]);
+        }
+        free(matrix);
     }
-    free(matrix);
 }
 
 
