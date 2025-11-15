@@ -3,10 +3,54 @@
 ### Author : QACH Yahya
 ### Encadrant : DUCASTEL Mathéo
 
-## **But du projet :**
-- La réalisation d’un générateur de labyrinthe
-- L'utilisation dans un jeu
+## **But du projet**
+Le but du projet est la réalisation d’un générateur de labyrinthe, et de son utilisation dans un jeu
+## **Arborescence**
+.
+├── headers
+├── minunit
+├── ressources
+│   ├── maps
+│   └── scores
+├── src
+└── tests
 
+- headers : repertoire contenant les fichier en-tête .h du projet
+- minunit : repertoire contenant les fichier en-tête .h de la bibliothèque minunit pour les tests unitaires
+- ressources : contient les ressources du fonctionnement du jeu
+  - maps : contient les fichiers .cfg qui contiennnt les différents labyrinthes créés
+  - scores : contient les fichiers .score qui contiennent les scores des différents joueurs qui ont joué aux labyrinthes
+- src : contient l'ensemble des fichiers source .c
+- tests : contient les fichiers de test des différentes fonctionnalitées du jeu
+
+## **Compilation et execution**
+
+Ce projet a été développé sur une machine linux Ubuntu, et donc la compilation et execution sont fonctionnales et faits pour les machine de type Linux Ubuntu.
+
+- **Pour compiler** : placez vous à la racine du projet et executer la commande:
+```
+make
+```
+
+- **Pour Lance le jeu (programme principal)** : placez vous à la racine du projet et executer la commande:
+```
+./labyrinthe_game
+```
+
+- **Pour lancer les tests** : placez vous à la racine du projet et executer la commande:
+```
+make test
+```
+
+- **Pour générer la documentation** : placez vous à la racine du projet et executer la commande:
+```
+make doc
+```
+la documentation sera générée et mise dans le sous dossier 'doc/'
+vous pouvez acceder à la documentation depuis un navigateur en utilisant la commande : 
+```
+firefox --new-window doc/html/index.html
+```
 
 ## **Ce projet se fera en quatre étapes :**
 
@@ -18,14 +62,12 @@ __Etape 2 :__
 - Réalisation d'un menu avec plusieurs options :
 - **Création de labyrinthe**  : l'utilisateur pourra choisir la taille du labyrinthe ainsi que son nom, et enregistrement en mémoire eu format .cfg et automatiquement chargé . Ensuite l'utilisateur est renvoyé au menu
 - **Chargement de labyrinthe** : lors du chargement, l'utilisateur indique le nom du labyrinthe auquel il souhaite jouer ( une liste des labyrinthes existants pourra lui être proposée). Le programme doit alors lire un fichier pour charger un labyrinthe précedemment créé. L'utilisateur est alors renvoyé au menu.
-
 - **Jouer** : Lance une partie avec un labyrinthe préalablement chargé. L’utilisateur peut alors se déplacer dans les couloirs du labyrinthe avec l’aide des touches z, q, s et d suivie de la touche entrée, Lorsque le joueur arrive à la fin du labyrinthe, le programme lui propose à nouveau le menu de démarrage (créer un labyrinthe, charger un labyrinthe, jouer et quitter).
-
 - **Quitter**
 
 
 ## fonctionnement de la fonction init_maze() : 
-## Explication étape par étape de la fonction `init_maze`
+### Explication étape par étape de la fonction `init_maze`
 
 ### 1. Initialisation : On prépare la liste des murs internes
 

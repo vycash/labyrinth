@@ -1,6 +1,6 @@
 ## Etape 1 
 
-[X] **DONE**
+- [X] **DONE**
 
 - [X] Réalisation de l'algorithme de génération de labyrinthes parfaits 
    -- [X] Création de la grille de jeu
@@ -10,7 +10,7 @@
 
 ## Etape 2
 
-[X] **DONE**
+- [X] **DONE**
 
 - [X] Réalisation d'un menu qui s'affiche dès l'execution du programme
   -- [X] Le menu attend une entrée de l'utilisateur correspondant à une action à effectuer
@@ -35,7 +35,7 @@
 
 ## Etape 3
 
-[X] **DONE**
+- [X] **DONE**
 
 #### 1. **Ajout des objets spéciaux au labyrinthe**
 
