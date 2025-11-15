@@ -1,4 +1,6 @@
-**Etape 1** __DONE__
+## Etape 1 
+
+[X] **DONE**
 
 - [X] Réalisation de l'algorithme de génération de labyrinthes parfaits 
    -- [X] Création de la grille de jeu
@@ -6,7 +8,9 @@
 
 - [X] Affichage de la grille/labyrinthe en mode console
 
-**Etape 2** __DONE__
+## Etape 2
+
+[X] **DONE**
 
 - [X] Réalisation d'un menu qui s'affiche dès l'execution du programme
   -- [X] Le menu attend une entrée de l'utilisateur correspondant à une action à effectuer
@@ -29,9 +33,11 @@
   -- [X] vérification de la fin du jeu (joueur arrive à la fin du labyrinthe)
   -- [X] retour au menu après fin du jeu
 
-**Etape 3** __DONE__
+## Etape 3
 
-## 1. **Ajout des objets spéciaux au labyrinthe**
+[X] **DONE**
+
+#### 1. **Ajout des objets spéciaux au labyrinthe**
 
 - [X] Définir des constantes pour les nouveaux objets :
     - [X] Valeurs pour la clé (`CLE`), trésor (`TRESOR`), piège (`PIEGE`), etc.
@@ -46,13 +52,13 @@
 
 - [X] Adapter le chargement pour relire les objets.
 
-## 2. **Gestion de la porte/verrouillage de la sortie**
+#### 2. **Gestion de la porte/verrouillage de la sortie**
 
 - [X] Permettre la sortie uniquement si le joueur possède la clé.
 
 - [X] Ajouter un attribut “a_clé” sur le joueur (booléen).
 
-## 3. **Gestion des scores**
+#### 3. **Gestion des scores**
 
 - [X] Ajouter une variable “score” dans la structure de jeu.
 
@@ -66,7 +72,7 @@
 
 - [X] Afficher le score final à la fin de la partie.
 
-## 4. **Interaction avec les objets**
+#### 4. **Interaction avec les objets**
 
 - [X] Lorsque le joueur atteint la case clé, la ramasser (mettre “a_clé” à vrai, enlever la clé du labyrinthe)
 
@@ -74,7 +80,7 @@
 
 - [X] Lorsqu’il atteint un piège, retirer les points et retirer le piège du labyrinthe.
 
-## 5. **Gestion des meilleurs scores (Top 10)**
+#### 5. **Gestion des meilleurs scores (Top 10)**
 
 - [X] Créer un fichier `nom_labyrinthe.score` pour chaque labyrinthe.
 
@@ -84,19 +90,19 @@
     - [X] Demander le nom du joueur.
     - [X] Insérer le score et le nom à la bonne position.
 
-## 6. **Affichage des meilleurs scores**
+#### 6. **Affichage des meilleurs scores**
 
 - [X] Ajouter une nouvelle entrée dans le menu principal ("Afficher le classement des meilleurs scores").
 - [X] Afficher le top 10 pour le labyrinthe actuellement chargé.
 - [X] Afficher le top 10 pour un labyrinthe donné.
 
-## 7. **Interface utilisateur et robustesse**
+#### 7. **Interface utilisateur et robustesse**
 
 - [X] Adapter le menu principal pour intégrer la nouvelle option.
 - [X] Vérifier et gérer tous les cas particuliers (pas de clé, pas de score, fichier inexistant, etc.).
 - [X] Tester la sauvegarde et le rechargement des labyrinthes avec objets.
 
-## 8. **Tests et validation**
+#### 8. **Tests et validation**
 - [X] Vérifier la libération de tous les blocs de mémoire alloués lors le fonctionnement du programme
 - [X] Vérifier que tous les objets sont placés correctement.
 - [X] Vérifier que le verrouillage/déverrouillage de la sortie fonctionne.
