@@ -29,7 +29,7 @@
   -- [X] vérification de la fin du jeu (joueur arrive à la fin du labyrinthe)
   -- [X] retour au menu après fin du jeu
 
-**Etape 3**
+**Etape 3** __DONE__
 
 ## 1. **Ajout des objets spéciaux au labyrinthe**
 
