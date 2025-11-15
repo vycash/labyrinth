@@ -12,9 +12,10 @@
  * @param lignes    le nombre de lignes
  * @param colonnes  le nombre de colonnes
  * @param nom       le nom du labyrinthe que l'on souhaite créer
+ * @param difficulte la difficulte du labyrinthe
  * @return un objet labyrinthe parfait de taille lignes x colonnes contenant la grille du labyrinthe et les dimensions
  */
-labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom);
+labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom,int difficulte);
 
 /**
  * @brief place dans le labyrinthe un nombre d'occurences d'un objet dans des cases aléatoires
@@ -24,6 +25,15 @@ labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom);
  * @param number    le nombre d'occurences de l'objet que l'on veut placer
 */
 void place_something(labyrinthe lab,int value,int number);
+
+/**
+* @brief supprime des murs additionnels du labyrinthe lorsque c'est un labyrinthe difficile
+*
+*@param grille la grille du labyrinthe duuel on veut supprimer les murs additionnels
+*@param lignes le nb de lignes de la grille
+*@param colonnes le nb de colonnes de la grille
+*/
+void remove_additionnal_walls(int** grille, int lignes,int colonnes);
 
 /**
  * @brief initialise la grille

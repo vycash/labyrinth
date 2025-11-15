@@ -18,7 +18,9 @@ int menu(){
     printf("    - 5) Quitter                      \n");
     
     int choix=0;
-    scanf("%d",&choix);
+    while ( scanf("%d",&choix) != 1 ){
+        printf("%sEntree non valide%s",ANSI_COLOR_RED,ANSI_RESET_ALL);
+    }
     
     return choix;
 }
@@ -33,7 +35,7 @@ char* recuperer_nom_labyrinthe(){
     while (!nom_valide) {
         
         printf("\nVeuillez choisir le nom du labyrinthe : ");
-        scanf("%s", nom);
+        scanf("%255s", nom);
         
         int est_chiffre = 1;
         
@@ -53,11 +55,22 @@ char* recuperer_nom_labyrinthe(){
     return nom;
 }
 
+int get_difficulte(){
+    int difficulte=0;
+    printf("\nVeuillez choisir une difficuleté (0 : pour Facile / 1 : pour difficile):\n");
+    while ( scanf("%d",&difficulte) != 1 ){
+        printf("%sEntree non valide%s",ANSI_COLOR_RED,ANSI_RESET_ALL);
+    }
+    return difficulte;
+}
+
 int main() {
 
     labyrinthe labyrinth=DEFAULT_LABYRINTH;
+
     int lignes=0;
     int colonnes=0;
+    
     char* nom=NULL;
 
     int running=1;
@@ -68,6 +81,12 @@ int main() {
 
             case 1: // Créer un labyrinthe
 
+                /*
+                si un labyrinthe est déja en mémoire et que 'on veut créer un nouveau, le labyrinthe chargé est libéré
+                pour éviter les fuites de mémoire
+                */
+                if(labyrinth.grille!=NULL){ free_labyrinth(labyrinth); }
+                
                 // Boucle de vérification pour lignes et colonnes
                 while (lignes <= 2 || lignes % 2 == 0) {
                     printf("\nVeuillez choisir le nb de lignes du labyrinthe (impair et > 3): ");
@@ -75,17 +94,16 @@ int main() {
                 } 
 
                 while (colonnes <= 2 || colonnes % 2 == 0) {
-                    printf("\nVeuillez choisir le nb de colonnes du labyrinthe (impair et > 3): ");
+                    printf("Veuillez choisir le nb de colonnes du labyrinthe (impair et > 3): ");
                     scanf("%d", &colonnes);
                 } 
 
+                int difficulte = get_difficulte();
                 nom=recuperer_nom_labyrinthe();
 
-                labyrinth = creer_labyrinthe(lignes, colonnes, nom);
+                labyrinth = creer_labyrinthe(lignes, colonnes, nom, difficulte);
 
                 if( labyrinth.grille != NULL){
-                    lignes=labyrinth.lignes;
-                    colonnes=labyrinth.colonnes;
                     printf("%s\n========== !! le labyrinthe %s est bien chargé en mémoire !! ==========\n%s",ANSI_COLOR_GREEN,nom,ANSI_RESET_ALL);
                 }
                 else{
@@ -94,14 +112,20 @@ int main() {
                 break;
 
             case 2: // Charger un labyrinthe
+
+                /*
+                si un labyrinthe est déja en mémoire et que 'on veut charger un nouveau, le labyrinthe chargé est libéré
+                pour éviter les fuites de mémoire
+                */
+                if(labyrinth.grille!=NULL){ free_labyrinth(labyrinth); }
+
+                // si il existe des labyrinthes déja créés on récupère le nom de celui que le joueur veut jouer               
                 if ( afficher_labyrinthes_disponibles() > 0){
                     nom=recuperer_nom_labyrinthe();   
                     labyrinth = charger_labyrinthe(nom);
                 }
                 // si le labyrinth est bien chargé
                 if( labyrinth.grille != NULL){
-                    lignes=labyrinth.lignes;
-                    colonnes=labyrinth.colonnes;
                     printf("%s\n========== !! le labyrinthe %s est bien chargé en mémoire !! ==========%s\n",ANSI_COLOR_GREEN,nom,ANSI_RESET_ALL);
                 }
                 break;
@@ -109,6 +133,7 @@ int main() {
             case 3: // Jouer
                 if (labyrinth.grille != NULL) {
                     jouer(labyrinth);
+                    // à la fin du jeu, quand la fonction jouer a fini de se dérouler, on libère la mémoire du labyrinthe
                     free_labyrinth(labyrinth);
                     labyrinth=DEFAULT_LABYRINTH;
                 }

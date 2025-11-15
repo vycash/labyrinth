@@ -10,15 +10,26 @@
 #include "matrix.h"
 
 
-labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom){
+labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom, int difficulte){
+    
+    /* initialisation du seed pour génération de labyrinthe et placement d'objets
+    une seule fois pour éviter la génération de la même séquence de nombres*/
+    srand(time(NULL));
+
     int** res = init_grille(lignes,colonnes);
     init_maze(res,lignes,colonnes);
     
-    labyrinthe lab = {lignes,colonnes,res,nom};
+    labyrinthe lab = {lignes,colonnes,res,nom,difficulte};
 
     place_something(lab,KEY,1); // placer la clé
     place_something(lab,PIEGE,NB_DE_PIEGES); // placer les pièges 
     place_something(lab,TRESOR,NB_DE_TRESOR); // placer les trésors
+
+    if ( difficulte==DIFFICILE ){
+        remove_additionnal_walls(lab.grille,lab.lignes,lab.colonnes);
+        place_something(lab,OGRE,NB_OGRES);
+        place_something(lab,FANTOME,NB_FANTOMES);
+    }
 
     enregister_labyrinthe(lab);
     
@@ -27,16 +38,16 @@ labyrinthe creer_labyrinthe(int lignes,int colonnes, char* nom){
 
 void place_something(labyrinthe lab,int value,int number){
 
+    
     int lignes=lab.lignes;
     int colonnes=lab.colonnes;
 
     int count=0;
-    srand(time(NULL));
 
     while( count < number ){
         int x = rand() % lignes;
         int y = rand() % colonnes;
-        if( x >= 1 && x <= lignes-1 && y >= 1 && y <= colonnes-1 && lab.grille[x][y] > 0){
+        if( x >= 1 && x < lignes-1 && y >= 1 && y < colonnes-1 && lab.grille[x][y] > 0){
             lab.grille[x][y]=value;
             count++;
         }
@@ -92,6 +103,12 @@ void display_vector_as_char(int * vector, int dimension){
                 break;
             case PIEGE:
                 printf("%s * %s",ANSI_COLOR_RED,ANSI_RESET_ALL);
+                break;            
+            case OGRE:
+                printf("%s-$-%s",ANSI_COLOR_MAGENTA,ANSI_RESET_ALL);
+                break;            
+            case FANTOME:
+                printf("%s-µ-%s",ANSI_COLOR_YELLOW,ANSI_RESET_ALL);
                 break;
             default:
                 printf("   ");
@@ -110,6 +127,35 @@ void fusionner(int **matrix, int id_source, int id_cible,int lignes,int colonnes
             }
         }
     }
+}
+
+// supprime des murs additionnels si le labyrinthe est difficile
+void remove_additionnal_walls(int** grille, int lignes,int colonnes){
+    int wall_count = 0;
+    
+    for ( int i=0 ; i< lignes ; i++ ){
+        for ( int j=0 ; j<colonnes ; j++ ){
+            if( grille[i][j] == MUR ){ wall_count++; }
+        }
+    }
+
+    int number = wall_count * (WALL_REMOVAL_RATIO/100.0);
+
+    int count = 0;
+    while( count < number ){
+
+        int x = rand() % lignes;
+        int y = rand() % colonnes;
+
+        if( x >= 1 && x < lignes-1 && y >= 1 && y < colonnes-1){
+            if ( grille[x][y] == MUR ){
+                grille[x][y]=DEFAULT;
+                count++;
+            }
+        }
+
+    }    
+
 }
 
 // Initialisation du labyrinthe parfait
@@ -134,7 +180,6 @@ void init_maze(int **matrix,int lignes,int colonnes) {
     }
 
     // Mélanger les murs de façon aléatoire
-    srand(time(NULL));
     for (int i = murs_count - 1; i > 0; i--) {
         int j = rand() % (i + 1);
         Mur temp = murs[i];

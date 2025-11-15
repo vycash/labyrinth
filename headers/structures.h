@@ -28,6 +28,9 @@ typedef struct{
     /** @brief le nom du labyrinthe */
     char* nom;
 
+    /** @brief la difficulte du labyrinthe (0:facile, 1:difficile) */
+    int difficulte;
+
 } labyrinthe;
 
 /**

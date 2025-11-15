@@ -57,7 +57,7 @@ void jouer(labyrinthe labyrinth){
                 printf("\n%s======= !! BRAVO vous êtes parmi les %d meilleurs !! =======\n%s",ANSI_COLOR_GREEN,NB_DE_RESULTATS,ANSI_RESET_ALL);
                 printf("\nveuillez rentrer votre pseudo : ");
                 char name[BUFFER_SIZE];
-                scanf("%s",name);
+                scanf("%255s",name);
                 enregistrer_score(labyrinth.nom,name,j.score);
             }
             running=0;
@@ -88,7 +88,7 @@ int score_parmi_meilleurs(int score_nb,char* nom_labyrinthe){
 }
 
 int placer(labyrinthe lab,int sujet_id,int x,int y){
-    if( x<1 || x>lab.lignes || y<1 || y>lab.colonnes || lab.grille[x][y] == MUR){
+    if( x<1 || x>lab.lignes || y<1 || y>lab.colonnes || lab.grille[x][y] < 1 ){
         printf("%sERROR placer : coordonnées invalides%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
         return FAILURE;
     }

@@ -22,6 +22,7 @@ void enregister_labyrinthe(labyrinthe lab){
     int** matrix = lab.grille;
     int lignes = lab.lignes;
     int colonnes = lab.colonnes;
+    int difficulte = lab.difficulte;
 
     char* filename= format_name(lab.nom,DOSSIER_MAPS,MAP_EXTENSION);
     FILE* file = fopen(filename, "w");
@@ -37,6 +38,7 @@ void enregister_labyrinthe(labyrinthe lab){
 
         fprintf(file,"%d\n",lignes);
         fprintf(file,"%d\n",colonnes);
+        fprintf(file,"%d\n",difficulte);
 
         for( int i=0 ; i<lignes ; i++){
             for( int j=0 ; j<colonnes ; j++){
@@ -54,11 +56,15 @@ labyrinthe charger_labyrinthe(char* nom){
 
     char* filename= format_name(nom,DOSSIER_MAPS,MAP_EXTENSION);
     FILE* file = fopen(filename, "r"); 
-    if (!file) { free(filename); return (labyrinthe){0,0,NULL,NULL}; }
+    if (!file) { free(filename); return DEFAULT_LABYRINTH; }
 
-    int lignes,colonnes;
+    int lignes=0;
+    int colonnes=0;
+    int difficulte=0;
+
     fscanf(file,"%d",&lignes);
     fscanf(file,"%d",&colonnes);
+    fscanf(file,"%d",&difficulte);
 
     int** grille=allocate_matrix(lignes,colonnes,0);
 
@@ -70,7 +76,7 @@ labyrinthe charger_labyrinthe(char* nom){
 
     free(filename);
     fclose(file);
-    return (labyrinthe) { lignes,colonnes,grille,nom };
+    return (labyrinthe) { lignes,colonnes,grille,nom,difficulte };
     
 }
 

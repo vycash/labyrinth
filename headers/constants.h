@@ -4,19 +4,30 @@
 #define ANSI_COLOR_GREEN     "\x1b[32m"
 #define ANSI_COLOR_GOLD      "\x1b[33m"
 #define ANSI_COLOR_BLUE      "\x1b[36m"
+#define ANSI_COLOR_MAGENTA   "\x1b[35m"
+#define ANSI_COLOR_WHITE     "\x1b[37m"
+#define ANSI_COLOR_YELLOW    "\x1b[93m"
 
 #define ANSI_RESET_ALL       "\x1b[0m"
 
 
 /*===================Constantes du labyrinthe===========================*/
 
+#define DIFFICILE 1
+#define FACILE    0
+
+/** @brief defini le pourcentage des murs à supprimer quand le labyrinthe est difficile */
+#define WALL_REMOVAL_RATIO 25
+
 /** @brief les valeurs des identifiants des differents objets dans le labyrinthe */
-#define JOUEUR_ID  0 
-#define MUR       -1
-#define SORTIE    -2
-#define KEY       -3
-#define PIEGE     -4
-#define TRESOR    -5
+#define JOUEUR_ID   0 
+#define MUR        -1
+#define SORTIE     -2
+#define KEY        -3
+#define PIEGE      -4
+#define TRESOR     -5
+#define FANTOME    -6
+#define OGRE       -7
 
 /** @brief les constantes qui définissent le malus des pièges et le bonus des trésors*/
 #define MALUS    1
@@ -28,12 +39,14 @@
 /** @brief constantes de nombre de pièges et trésors éparpillés dans le labyrinthe lors de la création */
 #define NB_DE_PIEGES 10
 #define NB_DE_TRESOR 10
+#define NB_OGRES     7
+#define NB_FANTOMES  7
 
 /** @brief l'objet joueur par défaut */
 #define JOUEUR              (joueur){JOUEUR_ID,0,0,0,1}
 
 /** @brief l'objet labyrinthe null */
-#define DEFAULT_LABYRINTH   (labyrinthe){0,0,NULL,NULL}
+#define DEFAULT_LABYRINTH   (labyrinthe){0,0,NULL,NULL,0}
 
 /*===================Constantes du game_handler=========================*/
 
@@ -62,7 +75,9 @@
 #define NB_DE_RESULTATS 10
 
 /** @brief le chemin vers le dossier où sont stockés les labyrinthe */
-#define DOSSIER_MAPS    "ressources/maps" 
+#define DOSSIER_MAPS            "ressources/maps" 
+#define DOSSIER_MAPS_FACILES    "ressources/maps/faciles" 
+#define DOSSIER_MAPS_DIFFICILES "ressources/maps/difficiles" 
 
 /** @brief le chemin vers le dossier où sont stockés les scores */
 #define DOSSIER_SCORE       "ressources/scores"

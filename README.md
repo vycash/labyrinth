@@ -7,13 +7,13 @@
 Le but du projet est la réalisation d’un générateur de labyrinthe, et de son utilisation dans un jeu
 ## **Arborescence**
 .
-├── headers
-├── minunit
-├── ressources
-│   ├── maps
-│   └── scores
-├── src
-└── tests
+├── headers  
+├── minunit  
+├── ressources  
+│   ├── maps  
+│   └── scores  
+├── src  
+└── tests  
 
 - headers : repertoire contenant les fichier en-tête .h du projet
 - minunit : repertoire contenant les fichier en-tête .h de la bibliothèque minunit pour les tests unitaires
