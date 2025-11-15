@@ -117,14 +117,18 @@ void enregistrer_score(char* nom_labyrinthe,char* nom_joueur,int score){
     fclose(file);
 }
 
-int* get_scores(char* nom_labyrinthe, int* count) {
+//* returns all the scores and puts the nb of scores read in count
+score* get_scores(char* nom_labyrinthe, int* count) {
     
     //* Initialisation
     *count = 0;  // Initialize count
     int capacity = STANDARD_CAPACITY;
     char* filename = format_name(nom_labyrinthe, DOSSIER_SCORE, SCORE_EXTENSION);
     FILE* file = fopen(filename, "r");
-    int* scores = malloc(capacity * sizeof(int));
+    score* scores = malloc(capacity * sizeof(score));
+    //* intialiser le tableau avec des valeurs (0,"") pour éviter les comportements inattendus
+    memset(scores, 0, capacity * sizeof(score));
+
 
     //* gestion des erreurs
     if (!filename) {
@@ -146,16 +150,15 @@ int* get_scores(char* nom_labyrinthe, int* count) {
     }
 
     //* Lecture
-    while ( !feof(file) ) {
-        if (fscanf(file, "%*[^,],%d", &scores[*count]) != 1) {
-            //printf("impossible de lire le fichier à l'index %d\n", i);
-            break;
-        }
+    while (fscanf(file, "%[^,],%d", scores[*count].player_name, &scores[*count].score) == 2) {
+
         (*count)++;
+        
         // Redimensionnement du tableau si besoin
         if (*count >= capacity) {
+            int old_capacity = capacity;
             capacity *= 2;
-            int* temp = realloc(scores, capacity * sizeof(int));
+            score* temp = realloc(scores, capacity * sizeof(score));
             if (!temp) {
                 printf("Erreur de reallocation memoire!\n");
                 free(scores);
@@ -164,6 +167,8 @@ int* get_scores(char* nom_labyrinthe, int* count) {
                 return NULL;
             }
             scores = temp;
+            //* intialiser le tableau réallocé avec des valeurs (0,"") pour éviter les comportements inattendus
+            memset(&scores[old_capacity], 0, (capacity - old_capacity) * sizeof(score));
         }
     }
 
@@ -178,32 +183,44 @@ int* get_scores(char* nom_labyrinthe, int* count) {
     
     return scores;
 }
-
 // Comparison function for qsort - sorts in descending order (highest score first)
 int compare_scores_desc(const void *a, const void *b) {
-    int scoreA = *(const int*)a;
-    int scoreB = *(const int*)b;
-    return scoreB - scoreA;  // Descending order (best scores first)
+    const score *scoreA = (const score*) a;
+    const score *scoreB = (const score*) b;
+    return scoreB->score - scoreA->score;  // Descending order (best scores first)
 }
 
-void sort_scores(int* scores, int count) {
+void sort_scores(score* scores, int count) {
     if (scores == NULL || count <= 1) {
         return;  // Nothing to sort
     }
     
-    qsort(scores, count, sizeof(int), compare_scores_desc);
+    qsort(scores, count, sizeof(score), compare_scores_desc);
 }
 
-int* get_best_scores(char* nom_labyrinthe) {
+score* get_best_scores(char* nom_labyrinthe) {
 
     //* initalisation
-    //char* filename = format_name(nom_labyrinthe, DOSSIER_SCORE, SCORE_EXTENSION);
     int count=0;
-    int* tous_les_scores = get_scores(nom_labyrinthe,&count);
-    sort_scores(tous_les_scores,count);
-    int* meilleurs = allocate_vector(NB_DE_RESULTATS, 0);
+    score* tous_les_scores = get_scores(nom_labyrinthe,&count);
+    if (tous_les_scores == NULL) { return NULL; }
 
-    for ( int i=0 ; i<NB_DE_RESULTATS ; i++){
+    sort_scores(tous_les_scores,count);
+
+    //* créer et initialiser le tableau des meilleurs scores par (0, chaine vide) pour éviter des comportements inattendus
+    score* meilleurs = malloc(NB_DE_RESULTATS * sizeof(score));
+    memset(meilleurs, 0, NB_DE_RESULTATS * sizeof(score));
+    for ( int i=0 ; i<NB_DE_RESULTATS ; i++ ){
+        meilleurs[i]=(score){0,""};
+    }
+
+
+    /*
+    *tant que i est plus petit que le NB de resultats que l'on souhaite (par défaut 10)
+    *et que i est plus petit que count (le nb de resultats total) car il peut être qu'il y'a moins de 10 résultats
+    *meilleurs reçoit l'objet score de tous les scores à l'index i après tri et les autres cases restent à NULL si nb total < 10
+    */
+    for ( int i=0 ; i<NB_DE_RESULTATS && i<count ; i++){
         meilleurs[i] = tous_les_scores[i];
     }
 
@@ -213,13 +230,14 @@ int* get_best_scores(char* nom_labyrinthe) {
 
 void afficher_meilleurs_scores(char* nom_labyrinthe){
     
-    int* meilleurs_scores = get_best_scores(nom_labyrinthe);
+    score* meilleurs_scores = get_best_scores(nom_labyrinthe);
+    if ( meilleurs_scores == NULL ){ return; }
 
-    printf("\n=> les meilleurs joueurs du labyrinthe <%s> :\n",nom_labyrinthe);
+    printf("\n=> les meilleurs joueurs du labyrinthe <%s> :\n<nom,score>\n",nom_labyrinthe);
     
     for (int i = 0; i < NB_DE_RESULTATS ; i++) {
-        if( meilleurs_scores[i] > 0 ){
-            printf("    -> %d\n", meilleurs_scores[i]); 
+        if( meilleurs_scores[i].score > 0 && meilleurs_scores[i].player_name != NULL ){
+            printf("%s,%d", meilleurs_scores[i].player_name,meilleurs_scores[i].score); 
         }
     }
     

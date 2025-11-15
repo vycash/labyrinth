@@ -87,3 +87,7 @@ Le labyrinthe est parfait : il n’existe qu’un seul chemin entre chaque pair
 
 
 # Librairie SDL
+
+# Problèmes et solutions
+- affichage des scores: puisque les scores sont enregistrés comme <nom,score> il est plus difficile de les lire et les afficher,
+  donc j'ai utilisé une structure score qui stocke le score et le nom du joueur qui a atteint ce score, cette sctructure est utilisée lors du tri pour l'affichage des meilleurs scores

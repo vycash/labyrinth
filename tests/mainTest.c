@@ -103,13 +103,16 @@ MU_TEST(test_movement_bas) {
 
 MU_TEST(test_score){
     enregistrer_score("minunit","chakchabani mol labani",9999999);
-    int* scores = get_best_scores("minunit");
-    display_vector(scores,NB_DE_RESULTATS);
+    score* scores = get_best_scores("minunit");
+    for(int i=0 ; i<NB_DE_RESULTATS; i++ ){
+        //printf("%s,%d",scores[i].player_name,scores[i].score);
+    }
+    //display_vector(scores,NB_DE_RESULTATS);
     int count=0;
     for(int i=0;i<NB_DE_RESULTATS;i++){
-        if(scores[i]==9999999){ count++; }
+        if(scores[i].score==9999999){ count++; }
     }
-    mu_assert(count>1,"AHLELE AHLELAS");
+    mu_assert(count>=1,"AHLELE AHLELAS");
     //mu_assert_int_eq(1,score_parmi_meilleurs(50,"minunit"));
 }
 

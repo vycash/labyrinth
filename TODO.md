@@ -100,7 +100,7 @@
 - [X] Vérifier la libération de tous les blocs de mémoire alloués lors le fonctionnement du programme
 - [X] Vérifier que tous les objets sont placés correctement.
 - [X] Vérifier que le verrouillage/déverrouillage de la sortie fonctionne.
-- [ ] Vérifier la gestion du score dans tous les cas.
-- [ ] Vérifier la gestion du classement/top 10.
-- [ ] Vérifier la robustesse (valeurs invalides, fichiers manquants…).
+- [X] Vérifier la gestion du score dans tous les cas.
+- [X] Vérifier la gestion du classement/top 10.
+- [X] Vérifier la robustesse (valeurs invalides, fichiers manquants…).
 

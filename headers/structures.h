@@ -54,3 +54,14 @@ typedef struct{
     /** @brief les coordonnées du joueur */
     int x,y;
 } joueur;
+
+/**
+ * @brief structure définissant un score, utilisée pour l'affichage et le tri des scores
+*/
+typedef struct{
+    /** @brief le score en question */
+    int score;
+
+    /** @brief le nom du joueur qui atteint ce score */
+    char player_name[BUFFER_SIZE];
+} score;

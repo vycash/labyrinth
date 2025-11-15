@@ -47,7 +47,7 @@ $(OUTPUT_DIR)%.o: $(SRC_DIR)%.c
 	$(COMPILE)
 
 # Test target
-test: $(TEST_BIN)
+test: $(OUTPUT_DIR) $(TEST_BIN)
 	./$(TEST_BIN)
 
 # Compile the test suite

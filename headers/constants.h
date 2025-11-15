@@ -33,7 +33,7 @@
 #define JOUEUR              (joueur){JOUEUR_ID,0,0,0,1}
 
 /** @brief l'objet labyrinthe null */
-#define DEFAULT_LABYRINTH   (labyrinthe) {0,0,NULL,NULL}
+#define DEFAULT_LABYRINTH   (labyrinthe){0,0,NULL,NULL}
 
 /*===================Constantes du game_handler=========================*/
 

@@ -69,14 +69,22 @@ int verifier_victoire(labyrinthe labyrinth){
     return labyrinth.grille[labyrinth.lignes-1][labyrinth.colonnes-2]==JOUEUR_ID;
 }
 
-int score_parmi_meilleurs(int score,char* nom_labyrinthe){
-    int* scores = get_best_scores(nom_labyrinthe);
-    if( scores == NULL ) return 1;
-    int max=scores[0];
-    for(int i=0 ; i<NB_DE_RESULTATS ; i++){
-        if(scores[i]>max){ max=scores[i]; }
-    }
-    return score <= max;
+int score_parmi_meilleurs(int score_nb,char* nom_labyrinthe){
+
+    score* tableau_scores = NULL;
+    tableau_scores = get_best_scores(nom_labyrinthe);
+
+    //* si le tableau de scores est vide (NULL) càd y'a pas de scores encore enregistrés
+    if( tableau_scores == NULL ) return 1; 
+
+    /*
+    *si le tableau de scores n'est pas vide
+    *puisque le tableau de scores qu'on récupère est déja trié, on a besoin que de
+    *vérifier si le score actuel est mieux que le dernier meilleur score
+    */
+    int res = tableau_scores[NB_DE_RESULTATS-1].score <= score_nb;
+    free(tableau_scores);   
+    return res;
 }
 
 int placer(labyrinthe lab,int sujet_id,int x,int y){
@@ -89,6 +97,8 @@ int placer(labyrinthe lab,int sujet_id,int x,int y){
 }
 
 int deplacer_joueur(joueur* player,labyrinthe lab,direction d){
+
+    if ( player == NULL ){ return FAILURE; }
     
     int** grille_labyrinthe = lab.grille;
 

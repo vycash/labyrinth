@@ -69,13 +69,13 @@ int main() {
             case 1: // Créer un labyrinthe
 
                 // Boucle de vérification pour lignes et colonnes
-                while (lignes <= 0 || lignes % 2 == 0) {
-                    printf("\nVeuillez choisir le nb de lignes du labyrinthe (impair et > 0): ");
+                while (lignes <= 2 || lignes % 2 == 0) {
+                    printf("\nVeuillez choisir le nb de lignes du labyrinthe (impair et > 3): ");
                     scanf("%d", &lignes);
                 } 
 
-                while (colonnes <= 0 || colonnes % 2 == 0) {
-                    printf("\nVeuillez choisir le nb de colonnes du labyrinthe (impair et > 0): ");
+                while (colonnes <= 2 || colonnes % 2 == 0) {
+                    printf("\nVeuillez choisir le nb de colonnes du labyrinthe (impair et > 3): ");
                     scanf("%d", &colonnes);
                 } 
 

@@ -75,7 +75,7 @@ void enregistrer_score(char* nom_labyrinthe,char* nom_joueur,int score);
  * @param count pointeur vers une variable de type int où on va stocker le nombre de scores lûs et renvoyés
  * @return tableau contenant tous les scores enregistrés pour un labyrinthe donné
 */
-int* get_scores(char* nom_labyrinthe, int* count);
+score* get_scores(char* nom_labyrinthe, int* count);
 
 /**
  * @brief trie tous les cores de tous les joueurs d'un labyrinthe en utilisant la fonction qsort (quick sort)
@@ -83,7 +83,7 @@ int* get_scores(char* nom_labyrinthe, int* count);
  * @param scores le tableau contenant les scores des joueurs
  * @param count le nombre d'elements dans le tableau scores
 */
-void sort_scores(int* scores, int count);
+void sort_scores(score* scores, int count);
 
 /**
  * @brief compare deux scores en descroissance, utilisée pour qsort
@@ -101,7 +101,7 @@ int compare_scores_desc(const void *a, const void *b);
  * @param nom_labyrinthe le nom du labyrinthe duquel on souhaite récupérer les meilleurs résultats
  * @return un tableau de taille nb_de_resultats correspondants aux meilleurs scores
 */
-int* get_best_scores(char* nom_labyrinthe);
+score* get_best_scores(char* nom_labyrinthe);
 
 /**
  * @brief affiche les meilleurs scores d'un labyrinthe donné
