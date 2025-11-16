@@ -1,0 +1,259 @@
+\hypertarget{file__handling_8h}{}\doxysection{headers/file\+\_\+handling.h File Reference}
+\label{file__handling_8h}\index{headers/file\_handling.h@{headers/file\_handling.h}}
+
+
+fichier qui implémente les fcts qui gèrent l\textquotesingle{}ecriture et la lecture des fichiers contenant les labyrinthes.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{file__handling_8h_a32e58f92455e72fc79dd7c178b516fa0}{format\+\_\+name}} (char $\ast$nom, char $\ast$dir\+\_\+name, char $\ast$extension)
+\begin{DoxyCompactList}\small\item\em formate le nom du labyrinthe en un chemin relatif cers le fichier contenant le labyrinthe \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__handling_8h_a720654f3399eed7a3a4a387dab3a3b7e}{enregister\+\_\+labyrinthe}} (\mbox{\hyperlink{structlabyrinthe}{labyrinthe}} lab)
+\begin{DoxyCompactList}\small\item\em enregistre un labyrinthe en format texte dans un fichier le fichier est nommé $<$nom\+\_\+labyrinthe.\+cfg$>$ l\textquotesingle{}extension du ficher d\textquotesingle{}enregistrement est définie dans \mbox{\hyperlink{constants_8h_source}{constants.\+h}} sous le nom MAP\+\_\+\+EXTENSION, si le fichier n\textquotesingle{}existe pas il est créé puis modifié. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlabyrinthe}{labyrinthe}} \mbox{\hyperlink{file__handling_8h_a4de123bc53ef1a04e386374c76fd72ff}{charger\+\_\+labyrinthe}} (char $\ast$nom)
+\begin{DoxyCompactList}\small\item\em charge un labyrinthe de son nom la fct cherche le fichier correspondant du labyrinthe et lit son contenu pour reconstruire le labyrinthe et le renvoie \end{DoxyCompactList}\item 
+int $\ast$ \mbox{\hyperlink{file__handling_8h_a13575ed86814a84565a0f660a30675ef}{taille\+\_\+labyrinthe}} (char $\ast$nom)
+\begin{DoxyCompactList}\small\item\em renvoie la taille d\textquotesingle{}un labyrinthe enregistré dans un fichier (lignes,colonnes) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__handling_8h_a8466f99d5218a737580d3e4aaf721001}{afficher\+\_\+labyrinthes\+\_\+disponibles}} ()
+\begin{DoxyCompactList}\small\item\em affiche la liste des labyrinthes enregistrés dans le dossier où sont stockés les labyrinthes défini dans \mbox{\hyperlink{constants_8h_source}{constants.\+h}} sous le nom de DOSSIER\+\_\+\+MAPS \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__handling_8h_a66e57db8d1881af483bf3652d6a8209c}{enregistrer\+\_\+score}} (char $\ast$nom\+\_\+labyrinthe, char $\ast$nom\+\_\+joueur, int \mbox{\hyperlink{structscore}{score}})
+\begin{DoxyCompactList}\small\item\em enregistre le score du joueur dans un fichier \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structscore}{score}} $\ast$ \mbox{\hyperlink{file__handling_8h_ab4d902686ff987c38ffcba0e919cd37d}{get\+\_\+scores}} (char $\ast$nom\+\_\+labyrinthe, int $\ast$count)
+\begin{DoxyCompactList}\small\item\em renvoie tout les scores enregistrés pour un labyrinthe \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__handling_8h_a5fa2a5c955969cd5ef9cef7edb53005f}{sort\+\_\+scores}} (\mbox{\hyperlink{structscore}{score}} $\ast$scores, int count)
+\begin{DoxyCompactList}\small\item\em trie tous les cores de tous les joueurs d\textquotesingle{}un labyrinthe en utilisant la fonction qsort (quick sort) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__handling_8h_a9a7ddce61cb930be8ec8bc5b05ae603c}{compare\+\_\+scores\+\_\+desc}} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em compare deux scores en descroissance, utilisée pour qsort \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structscore}{score}} $\ast$ \mbox{\hyperlink{file__handling_8h_ad8572e1216a7f814f87ea97cf9d4745d}{get\+\_\+best\+\_\+scores}} (char $\ast$nom\+\_\+labyrinthe)
+\begin{DoxyCompactList}\small\item\em renvoie un nombre spécifique des meilleurs scores des joueurs qui ont joués sur ce labyrinthe \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__handling_8h_a2a0e7114d8f25351060a75ba2c860eb6}{afficher\+\_\+meilleurs\+\_\+scores}} (char $\ast$nom\+\_\+labyrinthe)
+\begin{DoxyCompactList}\small\item\em affiche les meilleurs scores d\textquotesingle{}un labyrinthe donné \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+fichier qui implémente les fcts qui gèrent l\textquotesingle{}ecriture et la lecture des fichiers contenant les labyrinthes. 
+
+fichier qui déclare les prototypes des fcts qui gèrent l\textquotesingle{}ecriture et la lecture des fichiers de l\textquotesingle{}ensemble du projet.
+
+\begin{DoxyAuthor}{Author}
+QACH Yahya 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+5 Octobre 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{file__handling_8h_a8466f99d5218a737580d3e4aaf721001}\label{file__handling_8h_a8466f99d5218a737580d3e4aaf721001}} 
+\index{file\_handling.h@{file\_handling.h}!afficher\_labyrinthes\_disponibles@{afficher\_labyrinthes\_disponibles}}
+\index{afficher\_labyrinthes\_disponibles@{afficher\_labyrinthes\_disponibles}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{afficher\_labyrinthes\_disponibles()}{afficher\_labyrinthes\_disponibles()}}
+{\footnotesize\ttfamily int afficher\+\_\+labyrinthes\+\_\+disponibles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+affiche la liste des labyrinthes enregistrés dans le dossier où sont stockés les labyrinthes défini dans \mbox{\hyperlink{constants_8h_source}{constants.\+h}} sous le nom de DOSSIER\+\_\+\+MAPS 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{constants_8h_source}{constants.\+h}}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+le nombre de labyrinthes trouvés et affichés 
+\end{DoxyReturn}
+\mbox{\Hypertarget{file__handling_8h_a2a0e7114d8f25351060a75ba2c860eb6}\label{file__handling_8h_a2a0e7114d8f25351060a75ba2c860eb6}} 
+\index{file\_handling.h@{file\_handling.h}!afficher\_meilleurs\_scores@{afficher\_meilleurs\_scores}}
+\index{afficher\_meilleurs\_scores@{afficher\_meilleurs\_scores}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{afficher\_meilleurs\_scores()}{afficher\_meilleurs\_scores()}}
+{\footnotesize\ttfamily void afficher\+\_\+meilleurs\+\_\+scores (\begin{DoxyParamCaption}\item[{char $\ast$}]{nom\+\_\+labyrinthe }\end{DoxyParamCaption})}
+
+
+
+affiche les meilleurs scores d\textquotesingle{}un labyrinthe donné 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom\+\_\+labyrinthe} & nom du labyrinthe duquel on souhaite voir les meilleurs résultats \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{constants_8h_source}{constants.\+h}}, NB\+\_\+\+DE\+\_\+\+RESULTATS est la valeur utilisée par déafaut 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{file__handling_8h_a4de123bc53ef1a04e386374c76fd72ff}\label{file__handling_8h_a4de123bc53ef1a04e386374c76fd72ff}} 
+\index{file\_handling.h@{file\_handling.h}!charger\_labyrinthe@{charger\_labyrinthe}}
+\index{charger\_labyrinthe@{charger\_labyrinthe}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{charger\_labyrinthe()}{charger\_labyrinthe()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlabyrinthe}{labyrinthe}} charger\+\_\+labyrinthe (\begin{DoxyParamCaption}\item[{char $\ast$}]{nom }\end{DoxyParamCaption})}
+
+
+
+charge un labyrinthe de son nom la fct cherche le fichier correspondant du labyrinthe et lit son contenu pour reconstruire le labyrinthe et le renvoie 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom} & le nom du labyrinthe que l\textquotesingle{}ont veut charger \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le labyrinthe chargé en mémoire sous forme de matrice 
+\end{DoxyReturn}
+\mbox{\Hypertarget{file__handling_8h_a9a7ddce61cb930be8ec8bc5b05ae603c}\label{file__handling_8h_a9a7ddce61cb930be8ec8bc5b05ae603c}} 
+\index{file\_handling.h@{file\_handling.h}!compare\_scores\_desc@{compare\_scores\_desc}}
+\index{compare\_scores\_desc@{compare\_scores\_desc}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{compare\_scores\_desc()}{compare\_scores\_desc()}}
+{\footnotesize\ttfamily int compare\+\_\+scores\+\_\+desc (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+compare deux scores en descroissance, utilisée pour qsort 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & 1er element \\
+\hline
+{\em b} & 2eme element \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{file__handling_8h_a720654f3399eed7a3a4a387dab3a3b7e}\label{file__handling_8h_a720654f3399eed7a3a4a387dab3a3b7e}} 
+\index{file\_handling.h@{file\_handling.h}!enregister\_labyrinthe@{enregister\_labyrinthe}}
+\index{enregister\_labyrinthe@{enregister\_labyrinthe}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{enregister\_labyrinthe()}{enregister\_labyrinthe()}}
+{\footnotesize\ttfamily void enregister\+\_\+labyrinthe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{lab }\end{DoxyParamCaption})}
+
+
+
+enregistre un labyrinthe en format texte dans un fichier le fichier est nommé $<$nom\+\_\+labyrinthe.\+cfg$>$ l\textquotesingle{}extension du ficher d\textquotesingle{}enregistrement est définie dans \mbox{\hyperlink{constants_8h_source}{constants.\+h}} sous le nom MAP\+\_\+\+EXTENSION, si le fichier n\textquotesingle{}existe pas il est créé puis modifié. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{constants_8h_source}{constants.\+h}} pour les constantes utilisées dans \mbox{\hyperlink{file__handling_8h}{file\+\_\+handling.\+h}} 
+
+MAP\+\_\+\+EXTENSION pour l\textquotesingle{}extension de fichier qui stocke le \mbox{\hyperlink{structlabyrinthe}{labyrinthe}}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em lab} & le labyrinthe que l\textquotesingle{}on souhaite enregistrer dans la mémoire \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{file__handling_8h_a66e57db8d1881af483bf3652d6a8209c}\label{file__handling_8h_a66e57db8d1881af483bf3652d6a8209c}} 
+\index{file\_handling.h@{file\_handling.h}!enregistrer\_score@{enregistrer\_score}}
+\index{enregistrer\_score@{enregistrer\_score}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{enregistrer\_score()}{enregistrer\_score()}}
+{\footnotesize\ttfamily void enregistrer\+\_\+score (\begin{DoxyParamCaption}\item[{char $\ast$}]{nom\+\_\+labyrinthe,  }\item[{char $\ast$}]{nom\+\_\+joueur,  }\item[{int}]{score }\end{DoxyParamCaption})}
+
+
+
+enregistre le score du joueur dans un fichier 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom\+\_\+labyrinthe} & le nom du labyrinthe sur lequel le joueur a joué et a eu un score dessus \\
+\hline
+{\em nom\+\_\+joueur} & le nom du joueur \\
+\hline
+{\em score} & le score qu\textquotesingle{}a obtenu le joueur sur le labyrinthe \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{file__handling_8h_a32e58f92455e72fc79dd7c178b516fa0}\label{file__handling_8h_a32e58f92455e72fc79dd7c178b516fa0}} 
+\index{file\_handling.h@{file\_handling.h}!format\_name@{format\_name}}
+\index{format\_name@{format\_name}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{format\_name()}{format\_name()}}
+{\footnotesize\ttfamily char$\ast$ format\+\_\+name (\begin{DoxyParamCaption}\item[{char $\ast$}]{nom,  }\item[{char $\ast$}]{dir\+\_\+name,  }\item[{char $\ast$}]{extension }\end{DoxyParamCaption})}
+
+
+
+formate le nom du labyrinthe en un chemin relatif cers le fichier contenant le labyrinthe 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{constants_8h_source}{constants.\+h}}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em nom} & le nom du labyrinthe \\
+\hline
+{\em dir\+\_\+name} & le nom du dossier où sera enregistré le fichier du labyrinthe \\
+\hline
+{\em extension} & l\textquotesingle{}extension du fichier d\textquotesingle{}enregistrement du labyrinthe\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le chemin du fichier contenant le labyrinthe 
+\end{DoxyReturn}
+\mbox{\Hypertarget{file__handling_8h_ad8572e1216a7f814f87ea97cf9d4745d}\label{file__handling_8h_ad8572e1216a7f814f87ea97cf9d4745d}} 
+\index{file\_handling.h@{file\_handling.h}!get\_best\_scores@{get\_best\_scores}}
+\index{get\_best\_scores@{get\_best\_scores}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{get\_best\_scores()}{get\_best\_scores()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structscore}{score}}$\ast$ get\+\_\+best\+\_\+scores (\begin{DoxyParamCaption}\item[{char $\ast$}]{nom\+\_\+labyrinthe }\end{DoxyParamCaption})}
+
+
+
+renvoie un nombre spécifique des meilleurs scores des joueurs qui ont joués sur ce labyrinthe 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{constants_8h_source}{constants.\+h}}, NB\+\_\+\+DE\+\_\+\+RESULTATS est la macro utilisée par défaut comme nombre de resultats 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em nom\+\_\+labyrinthe} & le nom du labyrinthe duquel on souhaite récupérer les meilleurs résultats \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+un tableau de taille nb\+\_\+de\+\_\+resultats correspondants aux meilleurs scores 
+\end{DoxyReturn}
+\mbox{\Hypertarget{file__handling_8h_ab4d902686ff987c38ffcba0e919cd37d}\label{file__handling_8h_ab4d902686ff987c38ffcba0e919cd37d}} 
+\index{file\_handling.h@{file\_handling.h}!get\_scores@{get\_scores}}
+\index{get\_scores@{get\_scores}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{get\_scores()}{get\_scores()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structscore}{score}}$\ast$ get\+\_\+scores (\begin{DoxyParamCaption}\item[{char $\ast$}]{nom\+\_\+labyrinthe,  }\item[{int $\ast$}]{count }\end{DoxyParamCaption})}
+
+
+
+renvoie tout les scores enregistrés pour un labyrinthe 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom\+\_\+labyrinthe} & le nom du labyrinthe duquel on souhaite récupérer les scores \\
+\hline
+{\em count} & pointeur vers une variable de type int où on va stocker le nombre de scores lûs et renvoyés \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tableau contenant tous les scores enregistrés pour un labyrinthe donné 
+\end{DoxyReturn}
+\mbox{\Hypertarget{file__handling_8h_a5fa2a5c955969cd5ef9cef7edb53005f}\label{file__handling_8h_a5fa2a5c955969cd5ef9cef7edb53005f}} 
+\index{file\_handling.h@{file\_handling.h}!sort\_scores@{sort\_scores}}
+\index{sort\_scores@{sort\_scores}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{sort\_scores()}{sort\_scores()}}
+{\footnotesize\ttfamily void sort\+\_\+scores (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscore}{score}} $\ast$}]{scores,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+trie tous les cores de tous les joueurs d\textquotesingle{}un labyrinthe en utilisant la fonction qsort (quick sort) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scores} & le tableau contenant les scores des joueurs \\
+\hline
+{\em count} & le nombre d\textquotesingle{}elements dans le tableau scores \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{file__handling_8h_a13575ed86814a84565a0f660a30675ef}\label{file__handling_8h_a13575ed86814a84565a0f660a30675ef}} 
+\index{file\_handling.h@{file\_handling.h}!taille\_labyrinthe@{taille\_labyrinthe}}
+\index{taille\_labyrinthe@{taille\_labyrinthe}!file\_handling.h@{file\_handling.h}}
+\doxysubsubsection{\texorpdfstring{taille\_labyrinthe()}{taille\_labyrinthe()}}
+{\footnotesize\ttfamily int$\ast$ taille\+\_\+labyrinthe (\begin{DoxyParamCaption}\item[{char $\ast$}]{nom }\end{DoxyParamCaption})}
+
+
+
+renvoie la taille d\textquotesingle{}un labyrinthe enregistré dans un fichier (lignes,colonnes) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom} & le nom du labyrinthe que l\textquotesingle{}ont veut savoir sa taille\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+un tableau de deux elements contenant respectivement \mbox{[}lignes,colonnes\mbox{]} 
+\end{DoxyReturn}

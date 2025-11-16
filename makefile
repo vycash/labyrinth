@@ -1,60 +1,102 @@
-# Compiler and flags
+# ----- Variables de Compilation et Flags
 CC       = gcc
 CFLAGS   = -Wall -Wextra -pedantic -I$(HEADERS_DIR)
 COMPILE  = $(CC) $(CFLAGS) -c $< -o $@
 RM       = rm
 RM_DIR   = rm -rf
 MAKE_DIR = mkdir -p
+DOXYFILE = Doxyfile
+DOXYGEN  = doxygen
 
-# Directories
+# ----- Répértoires 
 SRC_DIR     = src/files/
 OUTPUT_DIR  = bin/
 HEADERS_DIR = headers/
 TEST_DIR    = tests/
-
-# Source & Object files
-SRC_FILES   = $(wildcard $(SRC_DIR)*.c)
-OBJ_FILES   = $(SRC_FILES:$(SRC_DIR)%.c=$(OUTPUT_DIR)%.o)
-
-MAIN_SRC    = src/main.c
-MAIN_OBJ    = $(OUTPUT_DIR)main.o
-TARGET      = labyrinthe_game
-
-# Test files
-TEST_BIN    = $(OUTPUT_DIR)test_lab
-TEST_SRC    = $(TEST_DIR)mainTest.c
+DOC_DIR	    = doc/
 MINUNIT_DIR = minunit/
 
-.PHONY: all clean test
 
-# Default build target
+# ----- Fichiers Source
+SRC_FILES   = $(wildcard $(SRC_DIR)*.c)
+MAIN_SRC    = src/main.c
+
+# ----- Fichiers Objet
+OBJ_FILES   = $(SRC_FILES:$(SRC_DIR)%.c=$(OUTPUT_DIR)%.o)
+MAIN_OBJ    = $(OUTPUT_DIR)main.o
+
+# ----- fichiers test
+TEST_SRC    = $(TEST_DIR)mainTest.c
+TEST_BIN    = $(OUTPUT_DIR)test_lab
+
+# -----Target principal
+TARGET      = labyrinthe_game
+
+
+# ================ Règles principales ============
+
+.PHONY: all clean test doc
+
+# règle par défaut
 all: $(OUTPUT_DIR) $(TARGET)
 
-# Create the output directory
-$(OUTPUT_DIR):
-	$(MAKE_DIR) $@
-
-# Compile the main executable
+# Compile l'executable
 $(TARGET): $(MAIN_OBJ) $(OBJ_FILES)
 	$(CC) $^ -o $@
 
-# Compile the main object file
+# Compile le main
 $(MAIN_OBJ): $(MAIN_SRC)
 	$(COMPILE)
 
-# Rule for compiling object files
+# règle pour compiler tous les fichiers objet
 $(OUTPUT_DIR)%.o: $(SRC_DIR)%.c
 	$(COMPILE)
 
-# Test target
+# ================ Règles pour créer les répértoires ============
+
+$(OUTPUT_DIR):
+	$(MAKE_DIR) $@
+
+$(DOC_DIR):
+	$(MAKE_DIR) $@
+
+# =============== Règles pour créer et executer les test =======
+
 test: $(OUTPUT_DIR) $(TEST_BIN)
 	./$(TEST_BIN)
 
-# Compile the test suite
 $(TEST_BIN): $(TEST_SRC) $(SRC_FILES)
 	$(CC) $^ -I$(HEADERS_DIR) -I$(MINUNIT_DIR) -o $@
 
-# Clean compiled files
+
+# =============== Règles de documentation ===============
+
+doc:  $(DOC_DIR)
+	$(DOXYGEN) $(DOXYFILE)
+
+doc-clean:
+	$(RM_DIR) $(DOC_DIR)
+
+doc-view:
+	@doc
+	@(firefox --new-window doc/html/index.html)
+
+
+# =============== Règles de nettoyage ==================
+
 clean:
+	$(RM) 	  $(TARGET)
 	$(RM_DIR) $(OUTPUT_DIR)
-	$(RM) $(TARGET)
+	$(RM_DIR) $(DOC_DIR)
+
+# =============== Aide ==================
+
+help:
+	@echo "====== Cibles disponibles ======"
+	@echo "  make              - Compile le programme (défaut)"
+	@echo "  make test         - Compile et exécute les tests"
+	@echo "  make doc          - Génère la documentation"
+	@echo "  make doc-view     - Génère et affiche la documentation"
+	@echo "  make doc-clean    - Supprime la documentation"
+	@echo "  make clean        - Supprime les fichiers compilés"
+	@echo "  make help         - Affiche cette aide"

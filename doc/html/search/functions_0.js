@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['afficher_5flabyrinthe_129',['afficher_labyrinthe',['../labyrinthe_8c.html#add748262f17b8c4fab35e88f83f50745',1,'afficher_labyrinthe(int **matrix, int lignes, int colonnes):&#160;labyrinthe.c'],['../labyrinthe_8h.html#add748262f17b8c4fab35e88f83f50745',1,'afficher_labyrinthe(int **matrix, int lignes, int colonnes):&#160;labyrinthe.c']]],
+  ['afficher_5flabyrinthes_5fdisponibles_130',['afficher_labyrinthes_disponibles',['../file__handling_8c.html#a8466f99d5218a737580d3e4aaf721001',1,'afficher_labyrinthes_disponibles():&#160;file_handling.c'],['../file__handling_8h.html#a8466f99d5218a737580d3e4aaf721001',1,'afficher_labyrinthes_disponibles():&#160;file_handling.c']]],
+  ['afficher_5fmeilleurs_5fscores_131',['afficher_meilleurs_scores',['../file__handling_8c.html#a2a0e7114d8f25351060a75ba2c860eb6',1,'afficher_meilleurs_scores(char *nom_labyrinthe):&#160;file_handling.c'],['../file__handling_8h.html#a2a0e7114d8f25351060a75ba2c860eb6',1,'afficher_meilleurs_scores(char *nom_labyrinthe):&#160;file_handling.c']]],
+  ['allocate_5fmatrix_132',['allocate_matrix',['../matrix_8c.html#a22708c40d10103a66dcb7c0d1e807c0f',1,'allocate_matrix(int lines, int columns, int val):&#160;matrix.c'],['../matrix_8h.html#a22708c40d10103a66dcb7c0d1e807c0f',1,'allocate_matrix(int lines, int columns, int val):&#160;matrix.c']]],
+  ['allocate_5fvector_133',['allocate_vector',['../matrix_8c.html#aefae75b6b9530bb9f39598986b7ce154',1,'allocate_vector(int dimension, int val):&#160;matrix.c'],['../matrix_8h.html#aefae75b6b9530bb9f39598986b7ce154',1,'allocate_vector(int dimension, int val):&#160;matrix.c']]]
+];

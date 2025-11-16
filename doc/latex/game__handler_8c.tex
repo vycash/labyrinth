@@ -1,0 +1,227 @@
+\hypertarget{game__handler_8c}{}\doxysection{src/files/game\+\_\+handler.c File Reference}
+\label{game__handler_8c}\index{src/files/game\_handler.c@{src/files/game\_handler.c}}
+
+
+Implementation des fonctions de gestion du labyrinthe.  
+
+
+{\ttfamily \#include \char`\"{}includes.\+h\char`\"{}}\newline
+Include dependency graph for game\+\_\+handler.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{game__handler_8c_a415fa750a5678288a2e015a4badab8c7}{jouer}} (\mbox{\hyperlink{structlabyrinthe}{labyrinthe}} labyrinth)
+\begin{DoxyCompactList}\small\item\em fonction qui gère la boucle principale du jeu. demande à l\textquotesingle{}utilisateur en boucle de saisir un charactère correspondant à un mouvement, puis appelle la fonction qui effectue le mouvement du joueur dans le labyrinthe. la boucle du jeu continue à tourner jusqu\textquotesingle{}a que le joueur atteint la sortie. à la fin de la boucle si le joueur a un score parmi les 10 meilleur, le programme lui demande de saisir son nom et enregistre son score dans le fichier de score correspondant au labyrinthe \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__handler_8c_a5abaab173a84cc70693fb27e1ab9aeac}{verifier\+\_\+victoire}} (\mbox{\hyperlink{structlabyrinthe}{labyrinthe}} labyrinth)
+\begin{DoxyCompactList}\small\item\em fonction qui vérifie si le joueur a atteint la sortie du labyrinthe \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__handler_8c_a7aea02c4a2ffdd40c77544bd4a556de8}{score\+\_\+parmi\+\_\+meilleurs}} (int score\+\_\+nb, char $\ast$nom\+\_\+labyrinthe)
+\begin{DoxyCompactList}\small\item\em vérifie si un score donné est parmi les NB\+\_\+\+DE\+\_\+\+RESULTATS meilleurs \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__handler_8c_aed0cb47a65a96556df5b06e464a34f2d}{placer}} (\mbox{\hyperlink{structlabyrinthe}{labyrinthe}} lab, int sujet\+\_\+id, int x, int y)
+\begin{DoxyCompactList}\small\item\em fonction qui place un objet d\textquotesingle{}identifiant ID dans la case de coordonnées x,y dans le labyrinthe lab \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__handler_8c_a19575c49bb424266261defabdaf72993}{deplacer\+\_\+joueur}} (\mbox{\hyperlink{structjoueur}{joueur}} $\ast$player, \mbox{\hyperlink{structlabyrinthe}{labyrinthe}} lab, \mbox{\hyperlink{structdirection}{direction}} d)
+\begin{DoxyCompactList}\small\item\em déplace le joueur d\textquotesingle{}un pas dans une direction donnée \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__handler_8c_abfa8f19afbc841d0c650b9c2d43d4a96}{deplacer\+\_\+joueur\+\_\+haut}} (\mbox{\hyperlink{structjoueur}{joueur}} $\ast$j, \mbox{\hyperlink{structlabyrinthe}{labyrinthe}} lab)
+\begin{DoxyCompactList}\small\item\em deplace le joueur sur le labyrinthe vers le haut \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__handler_8c_a41398e35474886f3c80b26f9a1f9b770}{deplacer\+\_\+joueur\+\_\+bas}} (\mbox{\hyperlink{structjoueur}{joueur}} $\ast$j, \mbox{\hyperlink{structlabyrinthe}{labyrinthe}} lab)
+\begin{DoxyCompactList}\small\item\em deplace le joueur sur le labyrinthe vers le bas \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__handler_8c_a7b980f9bba9714c200b913c670096972}{deplacer\+\_\+joueur\+\_\+droite}} (\mbox{\hyperlink{structjoueur}{joueur}} $\ast$j, \mbox{\hyperlink{structlabyrinthe}{labyrinthe}} lab)
+\begin{DoxyCompactList}\small\item\em deplace le joueur sur le labyrinthe vers la droite \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__handler_8c_a96a1fdcc0b4f78e4dcac19812d89a4eb}{deplacer\+\_\+joueur\+\_\+gauche}} (\mbox{\hyperlink{structjoueur}{joueur}} $\ast$j, \mbox{\hyperlink{structlabyrinthe}{labyrinthe}} lab)
+\begin{DoxyCompactList}\small\item\em deplace le joueur sur le labyrinthe vers la gauche \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation des fonctions de gestion du labyrinthe. 
+
+\begin{DoxyAuthor}{Author}
+QACH Yahya 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+5 Octobre 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game__handler_8c_a19575c49bb424266261defabdaf72993}\label{game__handler_8c_a19575c49bb424266261defabdaf72993}} 
+\index{game\_handler.c@{game\_handler.c}!deplacer\_joueur@{deplacer\_joueur}}
+\index{deplacer\_joueur@{deplacer\_joueur}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{deplacer\_joueur()}{deplacer\_joueur()}}
+{\footnotesize\ttfamily int deplacer\+\_\+joueur (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structjoueur}{joueur}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{lab,  }\item[{\mbox{\hyperlink{structdirection}{direction}}}]{d }\end{DoxyParamCaption})}
+
+
+
+déplace le joueur d\textquotesingle{}un pas dans une direction donnée 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & l\textquotesingle{}objet joueur que l\textquotesingle{}on utlisera pour stocker les coordonnées actuelles du joueur \\
+\hline
+{\em lab} & le labyrinthe sur lequel on déplace le joueur \\
+\hline
+{\em d} & la direction sur laquelle on souhaite déplacer le joueur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le déplacement a été bien effectué, 0 sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game__handler_8c_a41398e35474886f3c80b26f9a1f9b770}\label{game__handler_8c_a41398e35474886f3c80b26f9a1f9b770}} 
+\index{game\_handler.c@{game\_handler.c}!deplacer\_joueur\_bas@{deplacer\_joueur\_bas}}
+\index{deplacer\_joueur\_bas@{deplacer\_joueur\_bas}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{deplacer\_joueur\_bas()}{deplacer\_joueur\_bas()}}
+{\footnotesize\ttfamily int deplacer\+\_\+joueur\+\_\+bas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structjoueur}{joueur}} $\ast$}]{j,  }\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{lab }\end{DoxyParamCaption})}
+
+
+
+deplace le joueur sur le labyrinthe vers le bas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet joueur que l\textquotesingle{}on utlisera pour stocker les coordonnées actuelles du joueur \\
+\hline
+{\em lab} & le labyrinthe sur lequel on déplace le joueur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le déplacement a été bien effectué, 0 sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game__handler_8c_a7b980f9bba9714c200b913c670096972}\label{game__handler_8c_a7b980f9bba9714c200b913c670096972}} 
+\index{game\_handler.c@{game\_handler.c}!deplacer\_joueur\_droite@{deplacer\_joueur\_droite}}
+\index{deplacer\_joueur\_droite@{deplacer\_joueur\_droite}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{deplacer\_joueur\_droite()}{deplacer\_joueur\_droite()}}
+{\footnotesize\ttfamily int deplacer\+\_\+joueur\+\_\+droite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structjoueur}{joueur}} $\ast$}]{j,  }\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{lab }\end{DoxyParamCaption})}
+
+
+
+deplace le joueur sur le labyrinthe vers la droite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet joueur que l\textquotesingle{}on utlisera pour stocker les coordonnées actuelles du joueur \\
+\hline
+{\em lab} & le labyrinthe sur lequel on déplace le joueur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le déplacement a été bien effectué, 0 sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game__handler_8c_a96a1fdcc0b4f78e4dcac19812d89a4eb}\label{game__handler_8c_a96a1fdcc0b4f78e4dcac19812d89a4eb}} 
+\index{game\_handler.c@{game\_handler.c}!deplacer\_joueur\_gauche@{deplacer\_joueur\_gauche}}
+\index{deplacer\_joueur\_gauche@{deplacer\_joueur\_gauche}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{deplacer\_joueur\_gauche()}{deplacer\_joueur\_gauche()}}
+{\footnotesize\ttfamily int deplacer\+\_\+joueur\+\_\+gauche (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structjoueur}{joueur}} $\ast$}]{j,  }\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{lab }\end{DoxyParamCaption})}
+
+
+
+deplace le joueur sur le labyrinthe vers la gauche 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet joueur que l\textquotesingle{}on utlisera pour stocker les coordonnées actuelles du joueur \\
+\hline
+{\em lab} & le labyrinthe sur lequel on déplace le joueur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le déplacement a été bien effectué, 0 sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game__handler_8c_abfa8f19afbc841d0c650b9c2d43d4a96}\label{game__handler_8c_abfa8f19afbc841d0c650b9c2d43d4a96}} 
+\index{game\_handler.c@{game\_handler.c}!deplacer\_joueur\_haut@{deplacer\_joueur\_haut}}
+\index{deplacer\_joueur\_haut@{deplacer\_joueur\_haut}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{deplacer\_joueur\_haut()}{deplacer\_joueur\_haut()}}
+{\footnotesize\ttfamily int deplacer\+\_\+joueur\+\_\+haut (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structjoueur}{joueur}} $\ast$}]{j,  }\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{lab }\end{DoxyParamCaption})}
+
+
+
+deplace le joueur sur le labyrinthe vers le haut 
+
+
+\begin{DoxyParams}{Parameters}
+{\em j} & l\textquotesingle{}objet joueur que l\textquotesingle{}on utlisera pour stocker les coordonnées actuelles du joueur \\
+\hline
+{\em lab} & le labyrinthe sur lequel on déplace le joueur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le déplacement a été bien effectué, 0 sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game__handler_8c_a415fa750a5678288a2e015a4badab8c7}\label{game__handler_8c_a415fa750a5678288a2e015a4badab8c7}} 
+\index{game\_handler.c@{game\_handler.c}!jouer@{jouer}}
+\index{jouer@{jouer}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{jouer()}{jouer()}}
+{\footnotesize\ttfamily void jouer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{labyrinth }\end{DoxyParamCaption})}
+
+
+
+fonction qui gère la boucle principale du jeu. demande à l\textquotesingle{}utilisateur en boucle de saisir un charactère correspondant à un mouvement, puis appelle la fonction qui effectue le mouvement du joueur dans le labyrinthe. la boucle du jeu continue à tourner jusqu\textquotesingle{}a que le joueur atteint la sortie. à la fin de la boucle si le joueur a un score parmi les 10 meilleur, le programme lui demande de saisir son nom et enregistre son score dans le fichier de score correspondant au labyrinthe 
+
+
+\begin{DoxyParams}{Parameters}
+{\em labyrinth} & le labyrinthe sur lequel se déroulera le jeu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{game__handler_8c_aed0cb47a65a96556df5b06e464a34f2d}\label{game__handler_8c_aed0cb47a65a96556df5b06e464a34f2d}} 
+\index{game\_handler.c@{game\_handler.c}!placer@{placer}}
+\index{placer@{placer}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{placer()}{placer()}}
+{\footnotesize\ttfamily int placer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{lab,  }\item[{int}]{sujet\+\_\+id,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+fonction qui place un objet d\textquotesingle{}identifiant ID dans la case de coordonnées x,y dans le labyrinthe lab 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lab} & le labyrinthe sur lequel on souhaite placer l\textquotesingle{}objet \\
+\hline
+{\em sujet\+\_\+id} & l\textquotesingle{}identifiant de l\textquotesingle{}objet que l\textquotesingle{}on veut placer \\
+\hline
+{\em x} & la coordonnée de lignes \\
+\hline
+{\em y} & la coordonnée de colonnes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si l\textquotesingle{}objet a été bien placé aux coordonnées x,y, 0 sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game__handler_8c_a7aea02c4a2ffdd40c77544bd4a556de8}\label{game__handler_8c_a7aea02c4a2ffdd40c77544bd4a556de8}} 
+\index{game\_handler.c@{game\_handler.c}!score\_parmi\_meilleurs@{score\_parmi\_meilleurs}}
+\index{score\_parmi\_meilleurs@{score\_parmi\_meilleurs}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{score\_parmi\_meilleurs()}{score\_parmi\_meilleurs()}}
+{\footnotesize\ttfamily int score\+\_\+parmi\+\_\+meilleurs (\begin{DoxyParamCaption}\item[{int}]{score,  }\item[{char $\ast$}]{nom\+\_\+labyrinthe }\end{DoxyParamCaption})}
+
+
+
+vérifie si un score donné est parmi les NB\+\_\+\+DE\+\_\+\+RESULTATS meilleurs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score} & le score que l\textquotesingle{}on veut savoir s\textquotesingle{}il est parmi les meilleurs \\
+\hline
+{\em nom\+\_\+labyrinth} & le labyrinth sur lequel on va vérifier si score est parmi les meilleurs scores de ce labyrinthe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le score est parmi les meilleurs, 0 sinon 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{constants_8h}{constants.\+h}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{game__handler_8c_a5abaab173a84cc70693fb27e1ab9aeac}\label{game__handler_8c_a5abaab173a84cc70693fb27e1ab9aeac}} 
+\index{game\_handler.c@{game\_handler.c}!verifier\_victoire@{verifier\_victoire}}
+\index{verifier\_victoire@{verifier\_victoire}!game\_handler.c@{game\_handler.c}}
+\doxysubsubsection{\texorpdfstring{verifier\_victoire()}{verifier\_victoire()}}
+{\footnotesize\ttfamily int verifier\+\_\+victoire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlabyrinthe}{labyrinthe}}}]{labyrinth }\end{DoxyParamCaption})}
+
+
+
+fonction qui vérifie si le joueur a atteint la sortie du labyrinthe 
+
+
+\begin{DoxyParams}{Parameters}
+{\em labyrinth} & le labyrinthe sur lequel on veut vérifier que le joueur a gagné \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le joueur est bien sur la case de sortie, 0 sinon 
+\end{DoxyReturn}

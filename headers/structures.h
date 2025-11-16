@@ -1,4 +1,11 @@
 /** 
+* @file structures.h
+* @author QACH Yahya
+* @date 5 Octobre 2025
+* @brief fichier qui déclare les structures des objets utilisés dans tout le programme
+*/
+
+/** 
  * @brief Définition de la structure d'un mur pour l'initialisation du labyrinthe.
  * Un mur est défini par les deux céllules qu'il sépare
  */

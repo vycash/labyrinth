@@ -7,6 +7,10 @@
 
 #include "includes.h"
 
+/** 
+*@brief renvoie un choix de l'utilisateur
+*@return valeur int correspondant à une action parmi celles possibles
+*/
 int menu(){
     
     printf("\n======= Menu Jeu de labyrinthe =======\n");
@@ -25,6 +29,10 @@ int menu(){
     return choix;
 }
 
+/** 
+*@brief renvoie un nom de labyrinthe entré par l'utilsateur
+*@return chaine de charactère 
+*/
 char* recuperer_nom_labyrinthe(){
     
     char* nom = malloc( BUFFER_SIZE * sizeof(char) );
@@ -55,6 +63,10 @@ char* recuperer_nom_labyrinthe(){
     return nom;
 }
 
+/** 
+*@brief renvoie un choix de difficulté que choisi l'utilisateur
+*@return valeur int correspondant à une difficulté
+*/
 int get_difficulte(){
     int difficulte=0;
     printf("\nVeuillez choisir une difficuleté (0 : pour Facile / 1 : pour difficile):\n");

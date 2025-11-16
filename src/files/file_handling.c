@@ -1,8 +1,8 @@
 /** 
- * @file file_handling.h
- * @author QACH Yahya
- * @date 5 Octobre 2025
- * @brief fichier qui implémente les fcts qui gèrent l'ecriture et la lecture des fichiers contenant les labyrinthes.
+* @author QACH Yahya
+* @date 5 Octobre 2025
+* @file file_handling.c
+* @brief fichier qui implémente les fcts qui gèrent l'ecriture et la lecture des fichiers contenant les labyrinthes.
 */
 
 #include <string.h>
