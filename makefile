@@ -74,12 +74,9 @@ $(TEST_BIN): $(TEST_SRC) $(SRC_FILES)
 doc:  $(DOC_DIR)
 	$(DOXYGEN) $(DOXYFILE)
 
-doc-clean:
-	$(RM_DIR) $(DOC_DIR)
-
 doc-view:
-	@doc
-	@(firefox --new-window doc/html/index.html)
+	@make doc
+	@firefox --new-window doc/html/index.html
 
 
 # =============== Règles de nettoyage ==================
@@ -87,6 +84,8 @@ doc-view:
 clean:
 	$(RM) 	  $(TARGET)
 	$(RM_DIR) $(OUTPUT_DIR)
+	
+doc-clean:
 	$(RM_DIR) $(DOC_DIR)
 
 # =============== Aide ==================

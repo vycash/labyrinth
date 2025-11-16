@@ -6,7 +6,7 @@
 ## **But du projet**
 Le but du projet est la réalisation d’un générateur de labyrinthe, et de son utilisation dans un jeu
 ## **Arborescence**
-.
+.  
 ├── headers  
 ├── minunit  
 ├── ressources  
@@ -27,6 +27,11 @@ Le but du projet est la réalisation d’un générateur de labyrinthe, et de so
 
 Ce projet a été développé sur une machine linux Ubuntu, et donc la compilation et execution sont fonctionnales et faits pour les machine de type Linux Ubuntu.
 
+- **Pour voir les cybles possibles avec make vous pouvez executer cette commande**:
+```
+make help
+```
+
 - **Pour compiler** : placez vous à la racine du projet et executer la commande:
 ```
 make
@@ -46,8 +51,11 @@ make test
 ```
 make doc
 ```
-la documentation sera générée et mise dans le sous dossier 'doc/'
-vous pouvez acceder à la documentation depuis un navigateur en utilisant la commande : 
+-la documentation sera générée et mise dans le sous dossier 'doc/' vous pouvez acceder à la documentation depuis un navigateur en utilisant la commande : 
+```
+make doc-view
+```
+- ou pour l'afficher manuellement vous devez d'abord générer la documentation puis executer cette commande:
 ```
 firefox --new-window doc/html/index.html
 ```
