@@ -23,6 +23,8 @@ Le but du projet est la réalisation d’un générateur de labyrinthe, et de so
 - src : contient l'ensemble des fichiers source .c
 - tests : contient les fichiers de test des différentes fonctionnalitées du jeu
 
+TODO.md : toutes les fonctionnalités et taches réalisées.
+
 ## **Compilation et execution**
 
 Ce projet a été développé sur une machine linux Ubuntu, et donc la compilation et execution sont fonctionnales et faits pour les machine de type Linux Ubuntu.
