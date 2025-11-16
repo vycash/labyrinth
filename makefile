@@ -76,7 +76,7 @@ doc:  $(DOC_DIR)
 
 doc-view:
 	@make doc
-	@firefox --new-window doc/html/index.html
+	@firefox --new-window doc/html/files.html
 
 
 # =============== Règles de nettoyage ==================
