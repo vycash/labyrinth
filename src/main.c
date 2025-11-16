@@ -42,7 +42,7 @@ char* recuperer_nom_labyrinthe(){
 
     while (!nom_valide) {
         
-        printf("\nVeuillez choisir le nom du labyrinthe : ");
+        printf("Veuillez choisir le nom du labyrinthe : ");
         scanf("%255s", nom);
         
         int est_chiffre = 1;
@@ -69,7 +69,7 @@ char* recuperer_nom_labyrinthe(){
 */
 int get_difficulte(){
     int difficulte=0;
-    printf("\nVeuillez choisir une difficuleté (0 : pour Facile / 1 : pour difficile):\n");
+    printf("Veuillez choisir une difficuleté (0 : pour Facile / 1 : pour difficile): ");
     while ( scanf("%d",&difficulte) != 1 ){
         printf("%sEntree non valide%s",ANSI_COLOR_RED,ANSI_RESET_ALL);
     }
@@ -100,13 +100,13 @@ int main() {
                 if(labyrinth.grille!=NULL){ free_labyrinth(labyrinth); }
                 
                 // Boucle de vérification pour lignes et colonnes
-                while (lignes <= 2 || lignes % 2 == 0) {
-                    printf("\nVeuillez choisir le nb de lignes du labyrinthe (impair et > 3): ");
+                while (lignes <= 2 || lignes > 100 || lignes % 2 == 0) {
+                    printf("\nVeuillez choisir le nb de lignes du labyrinthe (impair et > 3 et < 100): ");
                     scanf("%d", &lignes);
                 } 
 
-                while (colonnes <= 2 || colonnes % 2 == 0) {
-                    printf("Veuillez choisir le nb de colonnes du labyrinthe (impair et > 3): ");
+                while (colonnes <= 2 || colonnes > 100 || colonnes % 2 == 0) {
+                    printf("Veuillez choisir le nb de colonnes du labyrinthe (impair et > 3 et < 100): ");
                     scanf("%d", &colonnes);
                 } 
 

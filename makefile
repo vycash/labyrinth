@@ -75,6 +75,7 @@ doc:  $(DOC_DIR)
 	$(DOXYGEN) $(DOXYFILE)
 
 doc-view:
+	@make doc-clean
 	@make doc
 	@firefox --new-window doc/html/files.html
 
@@ -82,8 +83,8 @@ doc-view:
 # =============== Règles de nettoyage ==================
 
 clean:
-	$(RM) 	  $(TARGET)
 	$(RM_DIR) $(OUTPUT_DIR)
+	$(RM) 	  $(TARGET)
 	
 doc-clean:
 	$(RM_DIR) $(DOC_DIR)
