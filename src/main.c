@@ -108,6 +108,7 @@ int main() {
                 }
                 else{
                     printf("%sERROR : impossible de créer la labyrinthe le labyrinth%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
+                    free(nom); // libérer la mémoire de nom si erreur  
                 }
                 break;
 
@@ -117,7 +118,9 @@ int main() {
                 si un labyrinthe est déja en mémoire et que 'on veut charger un nouveau, le labyrinthe chargé est libéré
                 pour éviter les fuites de mémoire
                 */
-                if(labyrinth.grille!=NULL){ free_labyrinth(labyrinth); }
+                if(labyrinth.grille!=NULL){ 
+                    free_labyrinth(labyrinth);
+                }
 
                 // si il existe des labyrinthes déja créés on récupère le nom de celui que le joueur veut jouer               
                 if ( afficher_labyrinthes_disponibles() > 0){
@@ -127,6 +130,10 @@ int main() {
                 // si le labyrinth est bien chargé
                 if( labyrinth.grille != NULL){
                     printf("%s\n========== !! le labyrinthe %s est bien chargé en mémoire !! ==========%s\n",ANSI_COLOR_GREEN,nom,ANSI_RESET_ALL);
+                }
+                else{
+                    printf("%sERROR : impossible de charger la labyrinthe le labyrinth%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
+                    free(nom);// libérer la mémoire de nom si erreur 
                 }
                 break;
 
@@ -143,8 +150,7 @@ int main() {
                 break;
             case 4: // afficher les meilleurs scores
                 afficher_labyrinthes_disponibles();
-                char* nom_tmp = malloc(BUFFER_SIZE*sizeof(char));
-                nom_tmp = recuperer_nom_labyrinthe();
+                char* nom_tmp = recuperer_nom_labyrinthe();
                 afficher_meilleurs_scores(nom_tmp);
                 free(nom_tmp);
                 break;

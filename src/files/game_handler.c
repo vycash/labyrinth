@@ -88,7 +88,7 @@ int score_parmi_meilleurs(int score_nb,char* nom_labyrinthe){
 }
 
 int placer(labyrinthe lab,int sujet_id,int x,int y){
-    if( x<1 || x>lab.lignes || y<1 || y>lab.colonnes || lab.grille[x][y] < 1 ){
+    if( x<1 || x>lab.lignes || y<1 || y>lab.colonnes || lab.grille[x][y] == MUR ){
         printf("%sERROR placer : coordonnées invalides%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
         return FAILURE;
     }
@@ -135,10 +135,21 @@ int deplacer_joueur(joueur* player,labyrinthe lab,direction d){
                 res = placer(lab,player->id,new_x,new_y);
                 printf("\n%sVous venez de perdre un point :( .%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
                 break;
+            case FANTOME :
+                player->score+=MALUS_FANTOME;
+                res = placer(lab,player->id,new_x,new_y);
+                printf("\n%sLe fantome vous a attaqué !!%s\n",ANSI_COLOR_YELLOW,ANSI_RESET_ALL);
+                printf("%sVous venez de perdre un point :( .%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
+                break;
+            case OGRE :
+                player->score+=MALUS_OGRE;
+                res = placer(lab,player->id,new_x,new_y);
+                printf("\n%sL'ogre vous a attaqué !!%s\n",ANSI_COLOR_MAGENTA,ANSI_RESET_ALL);
+                printf("%sVous venez de perdre un point :( .%s\n",ANSI_COLOR_RED,ANSI_RESET_ALL);
+                break;
             default:
                 res = placer(lab,player->id,new_x,new_y);
                 break;
-
         }
         // si le joueur a été bien placé on met a jour ses infos
         if (res==SUCCESS){

@@ -193,7 +193,7 @@ score* get_scores(char* nom_labyrinthe, int* count) {
 int compare_scores_desc(const void *a, const void *b) {
     const score *scoreA = (const score*) a;
     const score *scoreB = (const score*) b;
-    return scoreB->score - scoreA->score;  // Descending order (best scores first)
+    return scoreA->score - scoreB->score;  // Descending order (best scores first)
 }
 
 void sort_scores(score* scores, int count) {
@@ -239,6 +239,8 @@ void afficher_meilleurs_scores(char* nom_labyrinthe){
     score* meilleurs_scores = get_best_scores(nom_labyrinthe);
     if ( meilleurs_scores == NULL ){ return; }
 
+    printf("%sLes meilleurs scores sont calculés selon celui qui mis le moins de pas pour trouver la clé et atteindre la sortie%s",
+    ANSI_COLOR_GREEN,ANSI_RESET_ALL);
     printf("\n=> les meilleurs joueurs du labyrinthe <%s> :\n<nom,score>\n",nom_labyrinthe);
     
     for (int i = 0; i < NB_DE_RESULTATS ; i++) {

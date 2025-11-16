@@ -29,9 +29,13 @@
 #define FANTOME    -6
 #define OGRE       -7
 
-/** @brief les constantes qui définissent le malus des pièges et le bonus des trésors*/
+/** @brief les constantes qui définissent le malus des pièges/monstres et le bonus des trésors*/
 #define MALUS    1
 #define BONUS   -3
+
+#define MALUS_OGRE    2
+#define MALUS_FANTOME 2
+
 
 /** @brief valeur par défaut d'une case vide */
 #define DEFAULT 99
